@@ -23,10 +23,6 @@ import Route from '@ioc:Adonis/Core/Route'
 
 // Importa tus archivos de rutas personalizados
 import './routes/Movies'
-import './routes/Projectors'
-import './routes/Screenings'
-import './routes/Seats'
-import './routes/Theaters'
 
 // Ruta base opcional para probar
 Route.get('/', async () => {
