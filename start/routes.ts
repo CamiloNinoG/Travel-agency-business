@@ -22,7 +22,6 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 // Importa tus archivos de rutas personalizados
-import './routes/Movies'
 
 // Ruta base opcional para probar
 Route.get('/', async () => {
