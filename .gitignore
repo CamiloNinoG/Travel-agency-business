@@ -4,6 +4,8 @@ coverage
 .vscode
 .DS_STORE
 .env
+schema.json
+TODO.txt
 tmp
 npm-debug.log*
 yarn-debug.log*
