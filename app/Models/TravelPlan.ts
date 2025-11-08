@@ -4,11 +4,11 @@ import TouristPlan from "./TouristPlan";
 import Travel from "./Travel";
 
 export default class TravelPlan extends BaseModel {
-  @column()
-  public id_travel: number;
+  @column({ columnName: "id_travel" })
+  public idTravel: number;
 
-  @column()
-  public id_plan: number;
+  @column({ columnName: "id_plan" })
+  public idPlan: number;
 
   @belongsTo(() => TouristPlan, { foreignKey: "id_plan" })
   public plan: BelongsTo<typeof TouristPlan>;
