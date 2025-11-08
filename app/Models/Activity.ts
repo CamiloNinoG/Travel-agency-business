@@ -3,6 +3,7 @@ import { BaseModel, column, HasMany, hasMany} from '@ioc:Adonis/Lucid/Orm'
 import PlanActivity from './PlanActivity'
 import GuideActivity from './GuideActivity'
 
+
 export default class Activity extends BaseModel {
   @column({ isPrimary: true })
   public id: number

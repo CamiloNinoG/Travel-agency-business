@@ -4,11 +4,11 @@ import Guide from './Guide'
 import Activity from './Activity'
 
 export default class GuideActivity extends BaseModel {
-  @column()
-  public id_guide: number
+  @column({ columnName: "id_guide" })
+  public idGuide: number
 
-  @column()
-  public id_activity: number
+  @column({ columnName: "id_activity" })
+  public idActivity: number
 
   @belongsTo(() => Guide, { foreignKey: 'id_guide' })
   public guide: BelongsTo<typeof Guide>

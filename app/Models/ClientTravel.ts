@@ -1,24 +1,24 @@
-import { DateTime } from 'luxon'
-import { BaseModel, column, belongsTo, BelongsTo } from '@ioc:Adonis/Lucid/Orm'
-import Client from './Client'
-import Travel from './Travel'
+import { DateTime } from "luxon";
+import { BaseModel, column, belongsTo, BelongsTo } from "@ioc:Adonis/Lucid/Orm";
+import Client from "./Client";
+import Travel from "./Travel";
 
 export default class ClientTravel extends BaseModel {
-  @column()
-  public id_client: number
+  @column({ columnName: "id_travel" })
+  public idTravel: number;
 
-  @column()
-  public id_travel: number
+  @column({ columnName: "id_client" })
+  public idClient: number;
 
-  @belongsTo(() => Client, { foreignKey: 'id_client' })
-  public client: BelongsTo<typeof Client>
+  @belongsTo(() => Client, { foreignKey: "id_client" })
+  public client: BelongsTo<typeof Client>;
 
-  @belongsTo(() => Travel, { foreignKey: 'id_travel' })
-  public travel: BelongsTo<typeof Travel>
+  @belongsTo(() => Travel, { foreignKey: "id_travel" })
+  public travel: BelongsTo<typeof Travel>;
 
   @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  public createdAt: DateTime;
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
+  public updatedAt: DateTime;
 }

@@ -6,7 +6,7 @@ export default class ClientTravelValidator {
 
   public schema = schema.create({
     idTravel: schema.number([
-      rules.exists({ table: 'travels', column: 'id_travel' }),
+      rules.exists({ table: 'travels', column: 'id' }),
     ]),
     idClient: schema.number([
       rules.exists({ table: 'clients', column: 'id' }),
