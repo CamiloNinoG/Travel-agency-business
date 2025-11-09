@@ -1,0 +1,16 @@
+1. hacer la asociancion cuando se crea el mongo un usuario, mandar el di de mongo a SQL
+2. definir validtador y controllers de herencias Client, administrator, guide
+    hacer un service que se conecte con mongo?
+3. dudas en TouristPlan
+4. dudas en serviceTransport (rutas y vehiculos)
+5. trasnport interary
+6. itineraryroom alfin como es? con la relacion o no??
+7. cantidad de roles por usuario. solo uno? o que?.
+8. hacer service para conectar mongo y preguntar po rel id si existe para crearlo
+    9. implementaar en el front para que cuanod se modifiquen los roles hacer la conexion con adonis.
++
+
+FALTA GUIDES Y ADMINISTRATORES VALIDATOR Y CONTROLLER Y rutas
+
+REVISAR intermedias para hacer getXbyY ejemplo get travels by id de cliente 
+
