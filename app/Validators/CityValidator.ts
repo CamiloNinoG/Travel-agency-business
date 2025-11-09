@@ -1,24 +1,32 @@
-import { schema, CustomMessages, rules } from "@ioc:Adonis/Core/Validator";
-import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
+import { schema, rules } from '@ioc:Adonis/Core/Validator'
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-export default class CityValidator {
+export default class ClientValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    name: schema.string([
-      rules.minLength(2),
-      rules.maxLength(255),
-      rules.unique({ table: 'cities', column: 'name' }),
+    idUser: schema.number.optional([
+      rules.unsigned(),
+      // Validar que no esté duplicado manualmente
+      rules.unique({ table: 'clients', column: 'id_user' }),
     ]),
-    Ubication: schema.string([
-      rules.minLength(3),
-      rules.maxLength(255),
-    ]),
-  });
 
-  public messages: CustomMessages = {
-    "name.required": "El nombre de la ciudad es obligatorio",
-    "name.unique": "Ya existe una ciudad con ese nombre",
-    "Ubication.required": "La ubicación es obligatoria",
-  };
+    phone: schema.number.optional([
+      rules.unsigned(),
+      rules.range(1000000, 9999999999), // por ejemplo, validación básica de número
+    ]),
+
+    city: schema.string.optional({ trim: true }),
+
+    cc: schema.number.optional([
+      rules.unsigned(),
+      rules.unique({ table: 'clients', column: 'cc' }), // opcional, evita duplicados en documento
+    ]),
+  })
+
+  public messages = {
+    'idUser.unique': 'Este usuario ya tiene un cliente registrado.',
+    'phone.range': 'El número de teléfono debe tener entre 7 y 10 dígitos.',
+    'cc.unique': 'Ya existe un cliente con esta cédula.',
+  }
 }

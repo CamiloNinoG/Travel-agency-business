@@ -5,12 +5,13 @@ export default class AdministratorValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    // idUser: schema.number([
-    //   rules.exists({ table: 'users', column: 'id' }),
-    // ]),
-  });
+    idUser: schema.string([
+      rules.unique({ table: 'administrators', column: 'id_user' }),
+    ]),
+  })
 
   public messages: CustomMessages = {
-    "idUser.exists": "El usuario administrador indicado no existe",
-  };
+    "idUser.required": "El usuario asociado es obligatorio",
+    "idUser.unique": "Este usuario ya tiene un cliente asociado",
+  }
 }
