@@ -1,28 +1,33 @@
-import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
-import BankCard from './BankCard'
-import Invoice from './Invoice'
-import ClientTravel from './ClientTravel'
-import { DateTime } from 'luxon'
+import { DateTime } from "luxon";
+import { BaseModel, column, hasMany, HasMany } from "@ioc:Adonis/Lucid/Orm";
+import BankCard from "./BankCard";
+import ClientTravel from "./ClientTravel";
 
 export default class Client extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  public id: number;
+
+  @column({ columnName: "id_user" })
+  public idUser: number;
 
   @column()
-  public id_user: string // referencia al usuario en MongoDB
+  public phone: number;
+
+  @column()
+  public city: string;
+
+  @column()
+  public cc: number;
+
+  @hasMany(() => BankCard, { foreignKey: "idClient" })
+  public bankCards: HasMany<typeof BankCard>;
+
+  @hasMany(() => ClientTravel, { foreignKey: "idClient" })
+  public travels: HasMany<typeof ClientTravel>;
 
   @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  public createdAt: DateTime;
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
-  
-  @hasMany(() => BankCard, { foreignKey: 'id_client' })
-  public bankCards: HasMany<typeof BankCard>
-
-  @hasMany(() => Invoice, { foreignKey: 'id_client' })
-  public invoices: HasMany<typeof Invoice>
-
-  @hasMany(() => ClientTravel, { foreignKey: 'id_client' })
-  public clientTravels: HasMany<typeof ClientTravel>
+  public updatedAt: DateTime;
 }

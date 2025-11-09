@@ -6,20 +6,29 @@ export default class extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments("id");
-      table.integer("id_client").unsigned().references("id").inTable("clients");
+
+      // FK hacia BankCard
       table
         .integer("id_card")
         .unsigned()
         .references("id")
-        .inTable("bank_cards");
+        .inTable("bank_cards")
+        .onDelete("CASCADE");
+
+      // FK hacia Client (por el campo CC)
+      table.integer("cc").notNullable();
+
+      // FK hacia Installment
       table
         .integer("id_installment")
         .unsigned()
         .references("id")
-        .inTable("installments");
-      table.string("invoice_number");
-      table.decimal("amount_total", 10, 2);
-      table.date("date");
+        .inTable("installments")
+        .onDelete("CASCADE");
+
+      table.integer("invoice_number").notNullable();
+      table.decimal("amount_total", 10, 2).notNullable();
+      table.timestamp("expiration", { useTz: false }).notNullable();
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

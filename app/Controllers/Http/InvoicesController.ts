@@ -7,7 +7,6 @@ export default class InvoicesController {
     if (params.id) {
       const invoice = await Invoice.findOrFail(params.id)
       await invoice.load('client')
-      await invoice.load('card')
       await invoice.load('installment')
       return invoice
     } else {
