@@ -1,21 +1,14 @@
 import { DateTime } from "luxon";
-import {
-  BaseModel,
-  BelongsTo,
-  belongsTo,
-  column,
-  hasMany,
-  HasMany,
-} from "@ioc:Adonis/Lucid/Orm";
+import { BaseModel, column, belongsTo, BelongsTo, hasMany, HasMany } from "@ioc:Adonis/Lucid/Orm";
 import Client from "./Client";
 import Invoice from "./Invoice";
 
-export default class BackCard extends BaseModel {
+export default class BankCard extends BaseModel {
   @column({ isPrimary: true })
   public id: number;
 
-  @column()
-  public id_client: number;
+  @column({ columnName: "id_client" })
+  public idClient: number;
 
   @column()
   public type: string;
@@ -24,18 +17,24 @@ export default class BackCard extends BaseModel {
   public bank: string;
 
   @column()
-  public card_number: string;
+  public cardName: string;
+
+  @column()
+  public cardNumber: number;
 
   @column()
   public ccv: string;
 
+  @column.dateTime()
+  public expiration: DateTime;
+
   @column()
   public default: boolean;
 
-  @belongsTo(() => Client, { foreignKey: "id_client" })
+  @belongsTo(() => Client, { foreignKey: "idClient" })
   public client: BelongsTo<typeof Client>;
 
-  @hasMany(() => Invoice, { foreignKey: "id_card" })
+  @hasMany(() => Invoice, { foreignKey: "idCard" })
   public invoices: HasMany<typeof Invoice>;
 
   @column.dateTime({ autoCreate: true })

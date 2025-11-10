@@ -1,35 +1,36 @@
 import { DateTime } from "luxon";
-import { BaseModel, BelongsTo, belongsTo, column } from "@ioc:Adonis/Lucid/Orm";
+import { BaseModel, column, belongsTo, BelongsTo } from "@ioc:Adonis/Lucid/Orm";
+import BankCard from "./BankCard";
 import Installment from "./Installment";
 import Client from "./Client";
-import BankCard from "./BankCard";
 
 export default class Invoice extends BaseModel {
   @column({ isPrimary: true })
   public id: number;
 
-  @column({ columnName: "id_client" })
-  public idClient: number;
-
   @column({ columnName: "id_card" })
   public idCard: number;
+
+  @column()
+  public cc: number; // Se asocia al campo CC del cliente
 
   @column({ columnName: "id_installment" })
   public idInstallment: number;
 
-  @column()
-  public invoice_number: string;
+  @column({ columnName: "invoice_number" })
+  public invoiceNumber: number;
 
-  @column()
-  public amount_total: number;
+  @column({ columnName: "amount_total" })
+  public amountTotal: number;
 
-  @belongsTo(() => Client, { foreignKey: "id_client" })
+  // Relaciones
+  @belongsTo(() => BankCard, { foreignKey: "idCard" })
+  public bankCard: BelongsTo<typeof BankCard>;
+
+  @belongsTo(() => Client, { foreignKey: "cc", localKey: "cc" })
   public client: BelongsTo<typeof Client>;
 
-  @belongsTo(() => BankCard, { foreignKey: "id_card" })
-  public card: BelongsTo<typeof BankCard>;
-
-  @belongsTo(() => Installment, { foreignKey: "id_installment" })
+  @belongsTo(() => Installment, { foreignKey: "idInstallment" })
   public installment: BelongsTo<typeof Installment>;
 
   @column.dateTime({ autoCreate: true })

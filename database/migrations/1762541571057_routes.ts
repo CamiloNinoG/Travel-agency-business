@@ -6,8 +6,22 @@ export default class extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments("id");
-      table.string("origin").notNullable(); // nombre de la ciudad de origen
-      table.string("destination").notNullable();
+      
+      // Llaves foráneas a cities
+      table
+        .integer("id_origin")
+        .unsigned()
+        .references("id")
+        .inTable("cities")
+        .onDelete("CASCADE");
+
+      table
+        .integer("id_destination")
+        .unsigned()
+        .references("id")
+        .inTable("cities")
+        .onDelete("CASCADE");
+
       table.integer("duration").notNullable();
 
       /**

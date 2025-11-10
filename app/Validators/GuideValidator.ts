@@ -5,12 +5,13 @@ export default class GuideValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    // idUser: schema.number([
-    //   rules.exists({ table: 'users', column: 'id' }),
-    // ]),
-  });
+    idUser: schema.string([
+      rules.unique({ table: 'guides', column: 'id_user' }),
+    ]),
+  })
 
   public messages: CustomMessages = {
-    "idUser.exists": "El usuario asignado como guía no existe",
-  };
+    "idUser.required": "El usuario asociado es obligatorio",
+    "idUser.unique": "Este usuario ya tiene un cliente asociado",
+  }
 }

@@ -6,7 +6,6 @@ export default class TouristPlansController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
       const plan = await TouristPlan.findOrFail(params.id)
-      await plan.load('city')
       return plan
     } else {
       const page = request.input('page', 1)

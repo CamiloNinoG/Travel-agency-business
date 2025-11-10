@@ -5,23 +5,21 @@ export default class extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments("id");
-
       table
-        .integer("id_vehicule")
+        .integer('id_vehicule')
         .unsigned()
-        .references("id")
-        .inTable("vehicules")
-        .onDelete("CASCADE");
+        .primary() // PK y FK al mismo tiempo
+        .references('id')
+        .inTable('vehicules')
+        .onDelete('CASCADE')
       table
-        .integer("id_hotel")
+        .integer('id_hotel')
         .unsigned()
-        .references("id")
-        .inTable("hotels")
-        .onDelete("CASCADE");
+        .references('id')
+        .inTable('hotels')
+        .onDelete('CASCADE')
 
-      table.string("plate").notNullable();
-
+      table.string('plate', 20).notNullable()
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

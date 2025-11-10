@@ -9,12 +9,7 @@ export default class extends BaseSchema {
       table.string("name");
       table.string("type");
       table.decimal("total", 10, 2);
-      table
-        .integer("id_city")
-        .unsigned()
-        .references("id")
-        .inTable("cities")
-        .onDelete("CASCADE");
+      
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
