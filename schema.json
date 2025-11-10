@@ -1,0 +1,615 @@
+{
+  "models": [
+    {
+      "name": "Client",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "idUser",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "User"
+        }
+      ]
+    },
+    {
+      "name": "Travel",
+      "fields": [
+        {
+          "name": "idTravel",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "destination",
+          "type": "String"
+        },
+        {
+          "name": "origen",
+          "type": "String"
+        },
+        {
+          "name": "totalPrice",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "ClientTravel",
+      "fields": [
+        {
+          "name": "idTravel",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Travel"
+        },
+        {
+          "name": "idClient",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Client"
+        }
+      ],
+      "isJunctionTable": true
+    },
+    {
+      "name": "BankCard",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "idClient",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Client"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        },
+        {
+          "name": "bank",
+          "type": "String"
+        },
+        {
+          "name": "cardNumber",
+          "type": "number"
+        },
+        {
+          "name": "CCV",
+          "type": "string"
+        },
+        {
+          "name": "expiration",
+          "type": "Date"
+        },
+        {
+          "name": "default",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "Installment",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "idTravel",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Travel"
+        },
+        {
+          "name": "amount",
+          "type": "number"
+        },
+        {
+          "name": "status",
+          "type": "String"
+        },
+        {
+          "name": "date",
+          "type": "Date"
+        }
+      ]
+    },
+    {
+      "name": "Invoice",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "idClient",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Client"
+        },
+        {
+          "name": "idCard",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "BankCard"
+        },
+        {
+          "name": "idInstallment",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Installment"
+        },
+        {
+          "name": "invoiceNumber",
+          "type": "number"
+        },
+        {
+          "name": "amountTotal",
+          "type": "number"
+        },
+        {
+          "name": "date",
+          "type": "Date"
+        }
+      ]
+    }
+  ]
+}
+
+{
+  "models": [
+    {
+      "name": "Vehicule",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "capacity",
+          "type": "number"
+        },
+        {
+          "name": "status",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "Bus",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "idVehicule",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Vehicule"
+        },
+        {
+          "name": "idHotel",
+          "type": "number",
+          "isForeignKey": true
+          /* Nota: idHotel hace referencia a la entidad Hotel */
+        },
+        {
+          "name": "plate",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "Airline",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "name",
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "Airplane",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "idVehicule",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Vehicule"
+        },
+        {
+          "name": "idAirline",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Airline"
+        },
+        {
+          "name": "code",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "GPS",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "idVehicule",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Vehicule"
+        },
+        {
+          "name": "latitud",
+          "type": "string"
+        },
+        {
+          "name": "longitude",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "ServiceTransport",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "idVehicule",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Vehicule"
+        },
+        {
+          "name": "idRoute",
+          "type": "number",
+          "isForeignKey": true
+          /* Nota: idRoute hace referencia a la entidad Route */
+        },
+        {
+          "name": "startDate",
+          "type": "Date"
+        },
+        {
+          "name": "endDate",
+          "type": "Date"
+        },
+        {
+          "name": "Price",
+          "type": "number"
+        }
+      ]
+    }
+  ]
+}
+
+{
+  "models": [
+    {
+      "name": "Route",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "idOrigin",
+          "type": "number",
+          "isForeignKey": true
+          /* Nota: idOrigin probablemente hace referencia a una entidad City o Location */
+        },
+        {
+          "name": "idDestination",
+          "type": "number",
+          "isForeignKey": true
+          /* Nota: idDestination probablemente hace referencia a una entidad City o Location */
+        },
+        {
+          "name": "duration",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "TransportationItinerary",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "idService",
+          "type": "number"
+          /* Nota: idService podría referenciar un tipo de transporte o proveedor */
+        },
+        {
+          "name": "idTravel",
+          "type": "number",
+          "isForeignKey": true
+          /* Nota: idTravel probablemente hace referencia a la entidad principal 'Travel' */
+        },
+        {
+          "name": "idRoute",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Route"
+        },
+        {
+          "name": "Order",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "ItineraryRoom",
+      "fields": [
+        {
+          "name": "idItinerary",
+          "type": "number",
+          "isForeignKey": true
+          /* Nota: idItinerary probablemente hace referencia a la entidad principal 'Itinerary' o 'Travel' */
+        },
+        {
+          "name": "idRoom",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Room"
+        }
+      ],
+      "isJunctionTable": true
+    }
+  ]
+}
+
+{
+  "models": [
+    {
+      "name": "Room",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "idHotel",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Hotel"
+        },
+        {
+          "name": "priceRoom",
+          "type": "number"
+        },
+        {
+          "name": "type",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "Administrator",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "idUser",
+          "type": "number"
+        }
+      ]
+    },
+    {
+      "name": "Hotel",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "idCity",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "City"
+        },
+        {
+          "name": "idAdmin",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Administrator"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "capacity",
+          "type": "number"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "fromModel": "Hotel",
+      "toModel": "Room",
+      "type": "One-to-Many",
+      "onField": "idHotel"
+    }
+  ]
+}
+
+{
+  "models": [
+    {
+      "name": "Guide",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "idUser",
+          "type": "string"
+          /* Nota: Asumo que idUser podría ser una clave foránea a la entidad User */
+        }
+      ]
+    },
+    {
+      "name": "City",
+      "fields": [
+        {
+          "name": "idCity",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "name",
+          "type": "String"
+        },
+        {
+          "name": "Ubication",
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "touristPlan",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "name",
+          "type": "String"
+        },
+        {
+          "name": "type",
+          "type": "String"
+        },
+        {
+          "name": "idCity",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "City"
+        }
+      ]
+    },
+    {
+      "name": "Activity",
+      "fields": [
+        {
+          "name": "id",
+          "type": "number",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "priceActivity",
+          "type": "number"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "number" 
+          /* Nota: Se mantiene 'number' como se ve en la imagen, aunque 'string' sería más común para una descripción */
+        }
+      ]
+    },
+    {
+      "name": "PlanActivity",
+      "fields": [
+        {
+          "name": "idActivity",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Activity"
+        },
+        {
+          "name": "idPlan",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "touristPlan"
+        }
+      ],
+      "isJunctionTable": true
+    },
+    {
+      "name": "GuideActivity",
+      "fields": [
+        {
+          "name": "idGuide",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Guide"
+        },
+        {
+          "name": "idActivity",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "Activity"
+        }
+      ],
+      "isJunctionTable": true
+    },
+    {
+      "name": "TravelPlan",
+      "fields": [
+        {
+          "name": "idTravel",
+          "type": "number",
+          "isForeignKey": true
+          /* Nota: idTravel parece ser una clave foránea, posiblemente a una entidad 'Travel' */
+        },
+        {
+          "name": "idPlan",
+          "type": "number",
+          "isForeignKey": true,
+          "references": "touristPlan"
+        }
+      ],
+      "isJunctionTable": true
+    }
+  ]
+}

@@ -5,8 +5,11 @@ export default class extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
-      table.string('id_user') // referencia a MongoDB (guardada como string)
+      table.increments("id");
+      table.string("id_user").notNullable(); 
+      table.integer("phone").notNullable();
+      table.string("city", 100).notNullable();
+      table.integer("cc").notNullable().unique();
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

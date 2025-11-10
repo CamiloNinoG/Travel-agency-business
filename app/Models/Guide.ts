@@ -6,8 +6,8 @@ export default class Guide extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  @column()
-  public id_user: string // referencia al usuario (por ejemplo en MongoDB)
+  @column({ columnName: "id_user" })
+  public idUser: string // referencia al usuario (por ejemplo en MongoDB)
 
   @hasMany(() => GuideActivity, { foreignKey: 'id_guide' })
   public guideActivities: HasMany<typeof GuideActivity>
