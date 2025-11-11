@@ -10,10 +10,10 @@ export default class extends BaseSchema {
       table.string("type");
       table.decimal("total", 10, 2);
       
-
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
+      
       table.timestamp("created_at", { useTz: true });
       table.timestamp("updated_at", { useTz: true });
     });
