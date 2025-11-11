@@ -9,22 +9,22 @@ export default class ClientValidator {
       rules.unique({ table: 'clients', column: 'id_user' }),
     ]),
 
-    phone: schema.number.optional([
-      rules.unsigned(),
-      rules.range(1000000, 9999999999), // por ejemplo, validación básica de número
+    phone: schema.string.optional([
+      rules.regex(/^[0-9]{10}$/), // solo dígitos, exactamente 10 caracteres
     ]),
 
     city: schema.string.optional({ trim: true }),
 
-    cc: schema.number.optional([
-      rules.unsigned(),
-      rules.unique({ table: 'clients', column: 'cc' }), // opcional, evita duplicados en documento
+    cc: schema.string.optional([
+      rules.unique({ table: 'clients', column: 'cc' }),
+      rules.regex(/^[0-9]{6,10}$/), // cédula entre 6 y 10 dígitos
     ]),
   })
 
   public messages = {
     'idUser.unique': 'Este usuario ya tiene un cliente registrado.',
-    'phone.range': 'El número de teléfono debe tener entre 7 y 10 dígitos.',
+    'phone.regex': 'El número de teléfono debe tener exactamente 10 dígitos numéricos.',
     'cc.unique': 'Ya existe un cliente con esta cédula.',
+    'cc.regex': 'La cédula debe contener solo dígitos y tener entre 6 y 10 caracteres.',
   }
 }

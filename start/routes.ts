@@ -67,12 +67,13 @@ Route.group(() => {
 
 // === CLIENT ===
 Route.group(() => {
-  Route.get('/', 'ClientsController.find')
-  Route.get('/:id', 'ClientsController.find')
-  Route.post('/', 'ClientsController.create')
-  Route.put('/:id', 'ClientsController.update')
-  Route.delete('/:id', 'ClientsController.delete')
-}).prefix('/clients')
+  Route.get('/clients', 'ClientsController.find')
+  Route.get('/clients/:id', 'ClientsController.find')
+  Route.post('/clients', 'ClientsController.create')
+  Route.put('/clients/:id', 'ClientsController.update')
+  Route.delete('/clients/:id', 'ClientsController.delete')
+  Route.delete('/clients/user/:id_user', 'ClientsController.deleteByUserId')
+})
 
 // === GPS ===
 Route.group(() => {
@@ -210,6 +211,23 @@ Route.group(() => {
   Route.put('/:id', 'VehiculesController.update')
   Route.delete('/:id', 'VehiculesController.delete')
 }).prefix('/vehicules')
+
+
+// Administrators
+Route.get('/administrators', 'AdministratorsController.find')
+Route.get('/administrators/:id', 'AdministratorsController.find')
+Route.post('/administrators', 'AdministratorsController.create')
+Route.put('/administrators/:id', 'AdministratorsController.update')
+Route.delete('/administrators/:id', 'AdministratorsController.delete')
+Route.delete('/administrators/user/:userId', 'AdministratorsController.deleteByUserId');
+
+// Guides
+Route.get('/guides', 'GuidesController.find')
+Route.get('/guides/:id', 'GuidesController.find')
+Route.post('/guides', 'GuidesController.create')
+Route.put('/guides/:id', 'GuidesController.update')
+Route.delete('/guides/:id', 'GuidesController.delete')
+Route.delete('/guides/user/:userId', 'GuidesController.deleteByUserId');
 
 // Importa tus archivos de rutas personalizados
 

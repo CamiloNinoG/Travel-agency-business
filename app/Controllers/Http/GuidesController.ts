@@ -39,4 +39,19 @@ export default class GuidesController {
     await guide.delete()
     return response.status(204)
   }
+
+  public async deleteByUserId({ params, response }: HttpContextContract) {
+      const { userId } = params;
+  
+      const admin = await Guide.query().where("id_user", userId).first();
+  
+      if (!admin) {
+        return response
+          .status(404)
+          .json({ message: "guia no encontrado" });
+      }
+  
+      await admin.delete();
+      return response.status(204);
+    }
 }

@@ -11,13 +11,13 @@ export default class Client extends BaseModel {
   public idUser: string;
 
   @column()
-  public phone: number;
+  public phone: string;
 
   @column()
   public city: string;
 
   @column()
-  public cc: number;
+  public cc: string;
 
   @hasMany(() => BankCard, { foreignKey: "idClient" })
   public bankCards: HasMany<typeof BankCard>;
