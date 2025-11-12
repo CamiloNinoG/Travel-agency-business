@@ -7,6 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments("id");
       table.integer("id_client").unsigned().references("id").inTable("clients");
+      table.string("card_name");
       table.string("type");
       table.string("bank");
       table.string("card_number");

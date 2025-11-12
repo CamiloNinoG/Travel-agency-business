@@ -17,10 +17,10 @@ export default class BankCard extends BaseModel {
   public bank: string;
 
   @column()
-  public cardName: string;
+  public card_name: string;
 
   @column()
-  public cardNumber: number;
+  public card_number: number;
 
   @column()
   public ccv: string;

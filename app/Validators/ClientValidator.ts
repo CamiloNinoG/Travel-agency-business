@@ -10,7 +10,7 @@ export default class ClientValidator {
     ]),
 
     phone: schema.string.optional([
-      rules.regex(/^[0-9]{10}$/), // solo dígitos, exactamente 10 caracteres
+      rules.regex(/^[0-9]{10}$/), // solo dígitos, exactamente 15 caracteres
     ]),
 
     city: schema.string.optional({ trim: true }),

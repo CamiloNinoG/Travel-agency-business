@@ -9,12 +9,13 @@ export default class BankCardValidator {
       rules.exists({ table: 'clients', column: 'id' }),
     ]),
     type: schema.string([rules.minLength(3), rules.maxLength(50)]),
+    card_name: schema.string([rules.minLength(3), rules.maxLength(100)]),
     bank: schema.string([rules.minLength(3), rules.maxLength(100)]),
-    cardNumber: schema.number([
+    card_number: schema.number([
       rules.range(1000000000000000, 9999999999999999), // 16 dígitos
       rules.unique({ table: 'bank_cards', column: 'card_number' }),
     ]),
-    CCV: schema.string([rules.regex(/^\d{3,4}$/)]),
+    ccv: schema.string([rules.regex(/^\d{3,4}$/)]),
     expiration: schema.date({ format: 'yyyy-MM-dd' }, [
       rules.after('today'),
     ]),
