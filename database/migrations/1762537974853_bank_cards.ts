@@ -10,7 +10,7 @@ export default class extends BaseSchema {
       table.string("card_name");
       table.string("type");
       table.string("bank");
-      table.string("card_number");
+      table.integer("card_number");
       table.string("ccv");
       table.date("expiration");
       table.boolean("default");

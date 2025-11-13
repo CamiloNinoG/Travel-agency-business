@@ -3,15 +3,22 @@ import Vehicule from 'App/Models/Vehicule'
 import VehiculeValidator from 'App/Validators/VehiculeValidator'
 
 export default class VehiculesController {
-  public async find({ request, params }: HttpContextContract) {
-    if (params.id) {
-      return await Vehicule.findOrFail(params.id)
-    } else {
-      const page = request.input('page', 1)
-      const perPage = request.input('per_page', 20)
-      return await Vehicule.query().paginate(page, perPage)
+    public async find({ request, params }: HttpContextContract) {
+      if (params.id) {
+        const vehicule = await Vehicule.findOrFail(params.id)
+        // await vehicule.load('buses')
+        return vehicule
+      } else {
+        const data = request.all()
+        if ('page' in data && 'per_page' in data) {
+          const page = request.input('page', 1)
+          const perPage = request.input('per_page', 20)
+          return await Vehicule.query().paginate(page, perPage)
+        } else {
+          // return await Vehicule.query().preload('vehicules')
+        }
+      }
     }
-  }
 
   public async create({ request }: HttpContextContract) {
     const data = await request.validate(VehiculeValidator)

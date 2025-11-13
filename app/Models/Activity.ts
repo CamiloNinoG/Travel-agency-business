@@ -27,7 +27,7 @@ export default class Activity extends BaseModel {
   @column({ columnName: "id_city" }) // Columna en la base de datos sigue en snake_case
   public idCity: number;  
 
-  @belongsTo(() => City, { foreignKey: "idCity" })
+  @belongsTo(() => City, { foreignKey: "id_city" })
   public city: BelongsTo<typeof City>;
 
   @hasMany(() => PlanActivity, { foreignKey: "id_activity" })

@@ -16,11 +16,11 @@ export default class BankCard extends BaseModel {
   @column()
   public bank: string;
 
-  @column()
-  public card_name: string;
+  @column({ columnName: "card_name" })
+  public cardName: string;
 
-  @column()
-  public card_number: number;
+  @column({ columnName: "card_number" })
+  public cardNumber: number;
 
   @column()
   public ccv: string;
@@ -34,7 +34,7 @@ export default class BankCard extends BaseModel {
   @belongsTo(() => Client, { foreignKey: "idClient" })
   public client: BelongsTo<typeof Client>;
 
-  @hasMany(() => Invoice, { foreignKey: "idCard" })
+  @hasMany(() => Invoice, { foreignKey: "id_card" })
   public invoices: HasMany<typeof Invoice>;
 
   @column.dateTime({ autoCreate: true })

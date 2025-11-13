@@ -7,25 +7,25 @@ export default class ServiceTransport extends BaseModel {
   @column({ isPrimary: true })
   public id: number;
 
-  @column()
+  @column({ columnName: "id_vehicule" })
   public idVehicule: number;
 
-  @column()
+  @column({ columnName: "id_route" })
   public idRoute: number;
 
   @column.date()
-  public startDate: DateTime;
+  public start_date: DateTime;
 
   @column.date()
-  public endDate: DateTime;
+  public end_date: DateTime;
 
   @column()
   public price: number;
 
-  @belongsTo(() => Vehicule, { foreignKey: "idVehicule" })
+  @belongsTo(() => Vehicule, { foreignKey: "id_vehicule" })
   public vehicule: BelongsTo<typeof Vehicule>;
 
-  @belongsTo(() => Route, { foreignKey: "idRoute" })
+  @belongsTo(() => Route, { foreignKey: "id_route" })
   public route: BelongsTo<typeof Route>;
 
   @column.dateTime({ autoCreate: true })

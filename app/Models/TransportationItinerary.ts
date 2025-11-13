@@ -7,24 +7,30 @@ export default class TransportationItinerary extends BaseModel {
   @column({ isPrimary: true })
   public id: number;
 
-  @column()
+  // Clave foránea para el servicio. Asumiendo que es id_service en la DB.
+  @column({ columnName: "id_service" })
   public idService: number;
 
-  @column()
+  // Clave foránea para el viaje.
+  @column({ columnName: "id_travel" })
   public idTravel: number;
 
-  @column()
+  // Clave foránea para la ruta.
+  @column({ columnName: "id_route" })
   public idRoute: number;
 
   @column()
   public order: number;
 
-  @belongsTo(() => Route, { foreignKey: "idRoute" })
+  // Relación con Route, usando la clave foránea id_route
+  @belongsTo(() => Route, { foreignKey: "id_route" })
   public route: BelongsTo<typeof Route>;
 
-  @belongsTo(() => Travel, { foreignKey: "idTravel" })
+  // Relación con Travel, usando la clave foránea id_travel
+  @belongsTo(() => Travel, { foreignKey: "id_travel" })
   public travel: BelongsTo<typeof Travel>;
-
+    
+  // NOTA: No tienes createdAt en el modelo, solo updatedAt.
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
 }
