@@ -13,13 +13,10 @@ export default class TouristPlanValidator {
       rules.minLength(3),
       rules.maxLength(100),
     ]),
-    idCity: schema.number([
-      rules.exists({ table: 'cities', column: 'idCity' }),
-    ]),
+    total: schema.number([rules.range(0, 1000000)]),
   });
 
   public messages: CustomMessages = {
-    "idCity.exists": "La ciudad indicada no existe",
     "name.minLength": "El nombre del plan debe tener al menos 3 caracteres",
   };
 }

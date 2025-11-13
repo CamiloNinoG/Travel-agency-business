@@ -12,7 +12,7 @@ export default class BankCardValidator {
     card_name: schema.string([rules.minLength(3), rules.maxLength(100)]),
     bank: schema.string([rules.minLength(3), rules.maxLength(100)]),
     card_number: schema.number([
-      rules.range(1000000000000000, 9999999999999999), // 16 dígitos
+      rules.range(100000, 999999), // 16 dígitos
       rules.unique({ table: 'bank_cards', column: 'card_number' }),
     ]),
     ccv: schema.string([rules.regex(/^\d{3,4}$/)]),

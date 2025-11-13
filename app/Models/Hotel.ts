@@ -26,7 +26,7 @@ export default class Hotel extends BaseModel {
   @belongsTo(() => City, { foreignKey: 'idCity' })
   public city: BelongsTo<typeof City>
 
-  @belongsTo(() => Administrator, { foreignKey: 'idAdmin' })
+  @belongsTo(() => Administrator, { foreignKey: 'id_admin' })
   public administrator: BelongsTo<typeof Administrator>
 
   @hasMany(() => Room, { foreignKey: 'idHotel' }) 
