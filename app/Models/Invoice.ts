@@ -24,7 +24,7 @@ export default class Invoice extends BaseModel {
   public amountTotal: number;
 
   // Relaciones
-  @belongsTo(() => BankCard, { foreignKey: "idCard" })
+  @belongsTo(() => BankCard, { foreignKey: "id_card" })
   public bankCard: BelongsTo<typeof BankCard>;
 
   @belongsTo(() => Client, { foreignKey: "cc", localKey: "cc" })

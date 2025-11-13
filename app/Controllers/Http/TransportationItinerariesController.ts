@@ -4,15 +4,21 @@ import TransportationItineraryValidator from 'App/Validators/TransportationItine
 
 export default class TransportationItinerariesController {
   public async find({ request, params }: HttpContextContract) {
+    // Si viene un ID -> devolver solo ese registro
     if (params.id) {
-      const itinerary = await TransportationItinerary.findOrFail(params.id)
-      await itinerary.load('route')
-      return itinerary
-    } else {
+      return await TransportationItinerary.findOrFail(params.id)
+    }
+  
+    // Si vienen parámetros de paginación -> devolver con meta/data
+    const data = request.all()
+    if ('page' in data && 'per_page' in data) {
       const page = request.input('page', 1)
       const perPage = request.input('per_page', 20)
       return await TransportationItinerary.query().paginate(page, perPage)
     }
+  
+    // Si no hay paginación -> devolver todos los registros
+    return await TransportationItinerary.query()
   }
 
   public async create({ request }: HttpContextContract) {

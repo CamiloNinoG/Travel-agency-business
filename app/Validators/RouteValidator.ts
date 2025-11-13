@@ -5,10 +5,10 @@ export default class RouteValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    idOrigin: schema.number([
+    id_origin: schema.number([
       rules.exists({ table: 'cities', column: 'id' }), // o 'locations' según tu tabla real
     ]),
-    idDestination: schema.number([
+    id_destination: schema.number([
       rules.exists({ table: 'cities', column: 'id' }), // o 'locations'
     ]),
     duration: schema.number([

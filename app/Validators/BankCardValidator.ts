@@ -5,7 +5,7 @@ export default class BankCardValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    idClient: schema.number([
+    id_client: schema.number([
       rules.exists({ table: 'clients', column: 'id' }),
     ]),
     type: schema.string([rules.minLength(3), rules.maxLength(50)]),
