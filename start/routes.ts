@@ -252,6 +252,26 @@ Route.group(() => {
 })
   .prefix('guides')
 
+// =========================================================
+// CONDUCTORS
+// =========================================================
+Route.group(() => {
+  Route.get('/', 'ConductorsController.find')
+  Route.get('/:id', 'ConductorsController.find')
+  Route.post('/', 'ConductorsController.create')
+  Route.post('/notification', 'ConductorsController.sendAlert')
+})
+  .prefix('conductors')
+
+// =========================================================
+// TURNOS
+// =========================================================
+Route.group(() => {
+  Route.get('/', 'TurnosController.find')
+  Route.get('/:id', 'TurnosController.find')
+  Route.post('/', 'TurnosController.create')
+})
+  .prefix('turnos')
 
 
 // Importa tus archivos de rutas personalizados
