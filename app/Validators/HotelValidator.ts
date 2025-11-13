@@ -6,17 +6,26 @@ export default class HotelValidator {
 
   public schema = schema.create({
     idCity: schema.number([
-      rules.exists({ table: 'cities', column: 'idCity' }),
+      rules.exists({ table: 'cities', column: 'id' }),
     ]),
+
     idAdmin: schema.number([
       rules.exists({ table: 'administrators', column: 'id' }),
     ]),
+
     name: schema.string([
       rules.minLength(3),
       rules.maxLength(255),
     ]),
+
     capacity: schema.number([
       rules.range(1, 5000),
+    ]),
+
+    // 👇 Este campo es obligatorio porque la BD no permite NULL
+    address: schema.string([
+      rules.minLength(5),
+      rules.maxLength(255),
     ]),
   });
 
@@ -25,5 +34,7 @@ export default class HotelValidator {
     "idAdmin.exists": "El administrador indicado no existe",
     "name.minLength": "El nombre del hotel debe tener al menos 3 caracteres",
     "capacity.range": "La capacidad debe ser un número positivo",
+    "address.required": "La dirección del hotel es obligatoria",
+    "address.minLength": "La dirección debe tener al menos 5 caracteres",
   };
 }
