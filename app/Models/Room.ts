@@ -7,7 +7,7 @@ export default class Room extends BaseModel {
   public id: number;
 
   @column({ columnName: "id_hotel" })
-  public id_hotel: number;
+  public idHotel: number;
 
   @column()
   public price_room: number;
