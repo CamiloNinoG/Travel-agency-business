@@ -1,6 +1,7 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Client from "App/Models/Client";
 import ClientValidator from "App/Validators/ClientValidator";
+import ClientUpdateValidator from "App/Validators/ClientUpdateValidator";
 
 export default class ClientsController {
   public async find({ request, params }: HttpContextContract) {
@@ -24,7 +25,7 @@ export default class ClientsController {
 
   public async update({ params, request }: HttpContextContract) {
     const client = await Client.findOrFail(params.id);
-    const data = await request.validate(ClientValidator);
+    const data = await request.validate(ClientUpdateValidator);
     client.merge(data);
     await client.save();
     return client;

@@ -2,6 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Hotel from 'App/Models/Hotel'
 import HotelValidator from 'App/Validators/HotelValidator'
 import Ws from 'App/Services/Ws'
+import HotelUpdateValidator from 'App/Validators/HotelUpdateValidator'
 
 export default class HotelsController {
   public async find({ request, params }: HttpContextContract) {
@@ -30,7 +31,7 @@ export default class HotelsController {
 
   public async update({ params, request }: HttpContextContract) {
     const hotel = await Hotel.findOrFail(params.id)
-    const payload = await request.validate(HotelValidator)
+    const payload = await request.validate(HotelUpdateValidator)
     hotel.merge(payload)
     await hotel.save()
     return hotel

@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import BankCard from 'App/Models/BankCard'
 import BankCardValidator from 'App/Validators/BankCardValidator'
-
+import BankCardUpdateValidator from 'App/Validators/BankCardUpdateValidator'
 export default class BankCardsController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
@@ -28,7 +28,7 @@ export default class BankCardsController {
 
   public async update({ params, request }: HttpContextContract) {
     const card = await BankCard.findOrFail(params.id)
-    const payload = await request.validate(BankCardValidator)
+    const payload = await request.validate(BankCardUpdateValidator)
     card.merge(payload)
     await card.save()
     return card

@@ -8,6 +8,7 @@ export default class RoomValidator {
     id_hotel: schema.number([
       rules.exists({ table: 'hotels', column: 'id' }),
     ]),
+    
     price_room: schema.number([
       rules.range(1, 1000000),
     ]),
@@ -18,7 +19,7 @@ export default class RoomValidator {
   });
 
   public messages: CustomMessages = {
-    "id_hotel.exists": "El hotel indicado no existe",
+    "idHotel.exists": "El hotel indicado no existe",
     "price_room.range": "El precio de la habitación debe ser mayor que 0",
     "type.minLength": "El tipo de habitación debe tener al menos 3 caracteres",
   };
