@@ -15,8 +15,8 @@ export default class Activity extends BaseModel {
   @column({ isPrimary: true })
   public id: number;
 
-  @column({ columnName: "price_activity" }) // 👈 importante si tu campo SQL es con underscore
-  public priceActivity: number;
+  @column()
+  public price_activity: number;
 
   @column()
   public name: string;
@@ -24,10 +24,10 @@ export default class Activity extends BaseModel {
   @column()
   public description: string;
 
-  @column({ columnName: "id_city" }) // Columna en la base de datos sigue en snake_case
-  public idCity: number;  
+  @column()
+  public id_city: number;  
 
-  @belongsTo(() => City, { foreignKey: "idCity" })
+  @belongsTo(() => City, { foreignKey: "id_city" })
   public city: BelongsTo<typeof City>;
 
   @hasMany(() => PlanActivity, { foreignKey: "id_activity" })

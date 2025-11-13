@@ -8,16 +8,16 @@ export default class ServiceTransport extends BaseModel {
   public id: number;
 
   @column()
-  public idVehicule: number;
+  public id_vehicule: number;
 
   @column()
-  public idRoute: number;
+  public id_route: number;
 
   @column.date()
-  public startDate: DateTime;
+  public start_date: DateTime;
 
   @column.date()
-  public endDate: DateTime;
+  public end_date: DateTime;
 
   @column()
   public price: number;

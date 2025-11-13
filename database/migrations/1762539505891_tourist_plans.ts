@@ -6,9 +6,15 @@ export default class extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments("id");
+      table
+        .integer('id_city')
+        .unsigned()
+        .references('id')
+        .inTable('cities')
+        .onDelete('CASCADE')
       table.string("name");
       table.string("type");
-      table.decimal("total", 10, 2);
+      table.string("total");
       
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

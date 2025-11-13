@@ -19,7 +19,7 @@ export default class RoomValidator {
 
   public messages: CustomMessages = {
     "id_hotel.exists": "El hotel indicado no existe",
-    "price_r oom.range": "El precio de la habitación debe ser mayor que 0",
+    "price_room.range": "El precio de la habitación debe ser mayor que 0",
     "type.minLength": "El tipo de habitación debe tener al menos 3 caracteres",
   };
 }
