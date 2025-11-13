@@ -8,10 +8,10 @@ export default class Hotel extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  @column()
+  @column({ columnName: 'id_city' })
   public idCity: number
 
-  @column()
+  @column({ columnName: 'id_admin' })
   public idAdmin: number
 
   @column()
@@ -23,13 +23,13 @@ export default class Hotel extends BaseModel {
   @column()
   public address: string
 
-  @belongsTo(() => City, { foreignKey: 'id_city' })
+  @belongsTo(() => City, { foreignKey: 'idCity' })
   public city: BelongsTo<typeof City>
 
-  @belongsTo(() => Administrator, { foreignKey: 'id_admin' })
+  @belongsTo(() => Administrator, { foreignKey: 'idAdmin' })
   public administrator: BelongsTo<typeof Administrator>
 
-  @hasMany(() => Room, { foreignKey: 'id_hotel' })
+  @hasMany(() => Room, { foreignKey: 'idHotel' }) 
   public rooms: HasMany<typeof Room>
 
   @column.dateTime({ autoCreate: true })

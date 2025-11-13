@@ -13,7 +13,7 @@ export default class City extends BaseModel {
   @column()
   public ubication: string;
 
-  @hasMany(() => TouristPlan, { foreignKey: "id_city" })
+  @hasMany(() => TouristPlan, { foreignKey: "idCity" })
   public touristPlans: HasMany<typeof TouristPlan>;
 
   @hasMany(() => Hotel, { foreignKey: "idCity" })
