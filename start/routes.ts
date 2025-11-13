@@ -11,7 +11,7 @@ Route.group(() => {
   Route.post('/', 'ActivitiesController.create')        // CREATE
   Route.put('/:id', 'ActivitiesController.update')      // UPDATE
   Route.delete('/:id', 'ActivitiesController.delete')   // DELETE
-}).prefix('activities').middleware(['security'])
+}).prefix('activities')
 
 /* =========================================================
    AIRLINES
@@ -22,7 +22,7 @@ Route.group(() => {
   Route.post('/', 'AirlinesController.create')          // CREATE
   Route.put('/:id', 'AirlinesController.update')        // UPDATE
   Route.delete('/:id', 'AirlinesController.delete')     // DELETE
-}).prefix('airlines').middleware(['security'])
+}).prefix('airlines')
 
 /* =========================================================
    AIRPLANES
@@ -33,7 +33,7 @@ Route.group(() => {
   Route.post('/', 'AirplanesController.create')         // CREATE
   Route.put('/:id', 'AirplanesController.update')       // UPDATE
   Route.delete('/:id', 'AirplanesController.delete')    // DELETE
-}).prefix('airplanes').middleware(['security'])
+}).prefix('airplanes')
 
 /* =========================================================
    BANK CARDS
@@ -44,7 +44,7 @@ Route.group(() => {
   Route.post('/', 'BankCardsController.create')         // CREATE
   Route.put('/:id', 'BankCardsController.update')       // UPDATE
   Route.delete('/:id', 'BankCardsController.delete')    // DELETE
-}).prefix('bank-cards').middleware(['security'])
+}).prefix('bank-cards')
 
 
 // === BUS ===
@@ -54,7 +54,7 @@ Route.group(() => {
   Route.post('/', 'BusesController.create')
   Route.put('/:id', 'BusesController.update')
   Route.delete('/:id', 'BusesController.delete')
-}).prefix('/buses').middleware(['security'])
+}).prefix('/buses')
 
 // === CITY ===
 Route.group(() => {
@@ -63,7 +63,7 @@ Route.group(() => {
   Route.post('/', 'CitiesController.create')
   Route.put('/:id', 'CitiesController.update')
   Route.delete('/:id', 'CitiesController.delete')
-}).prefix('/cities').middleware(['security'])
+}).prefix('/cities')
 
 // === CLIENT ===
 Route.group(() => {
@@ -72,9 +72,9 @@ Route.group(() => {
   Route.put('/clients/:id', 'ClientsController.update')
   Route.delete('/clients/:id', 'ClientsController.delete')
   Route.delete('/clients/user/:id_user', 'ClientsController.deleteByUserId')
-}).middleware(['security'])
+})
 
-// Ruta pública (sin middleware)
+// Ruta
 Route.post('/clients', 'ClientsController.create')
 
 // === GPS ===
@@ -84,7 +84,7 @@ Route.group(() => {
   Route.post('/', 'GpsController.create')
   Route.put('/:id', 'GpsController.update')
   Route.delete('/:id', 'GpsController.delete')
-}).prefix('/gps').middleware(['security'])
+}).prefix('/gps')
 
 // === GUIDE ACTIVITIES ===
 Route.group(() => {
@@ -93,7 +93,7 @@ Route.group(() => {
   Route.post('/', 'GuideActivitiesController.create')
   Route.put('/:id', 'GuideActivitiesController.update')
   Route.delete('/:id', 'GuideActivitiesController.delete')
-}).prefix('/guide-activities').middleware(['security'])
+}).prefix('/guide-activities')
 
 // === HOTELS ===
 Route.group(() => {
@@ -102,7 +102,7 @@ Route.group(() => {
   Route.post('/', 'HotelsController.create')
   Route.put('/:id', 'HotelsController.update')
   Route.delete('/:id', 'HotelsController.delete')
-}).prefix('/hotels').middleware(['security'])
+}).prefix('/hotels')
 
 // === INSTALLMENTS ===
 Route.group(() => {
@@ -111,7 +111,7 @@ Route.group(() => {
   Route.post('/', 'InstallmentsController.create')
   Route.put('/:id', 'InstallmentsController.update')
   Route.delete('/:id', 'InstallmentsController.delete')
-}).prefix('/installments').middleware(['security'])
+}).prefix('/installments')
 
 
 // === INVOICES ===
@@ -121,7 +121,7 @@ Route.group(() => {
   Route.post('/', 'InvoicesController.create')
   Route.put('/:id', 'InvoicesController.update')
   Route.delete('/:id', 'InvoicesController.delete')
-}).prefix('/invoices').middleware(['security'])
+}).prefix('/invoices')
 
 // === ITINERARY ROOMS ===
 Route.group(() => {
@@ -130,7 +130,7 @@ Route.group(() => {
   Route.post('/', 'ItineraryRoomsController.create')
   Route.put('/:id', 'ItineraryRoomsController.update')
   Route.delete('/:id', 'ItineraryRoomsController.delete')
-}).prefix('/itinerary-rooms').middleware(['security'])
+}).prefix('/itinerary-rooms')
 
 // === PLAN ACTIVITIES ===
 Route.group(() => {
@@ -139,7 +139,7 @@ Route.group(() => {
   Route.post('/', 'PlanActivitiesController.create')
   Route.put('/:id', 'PlanActivitiesController.update')
   Route.delete('/:id', 'PlanActivitiesController.delete')
-}).prefix('/plan-activities').middleware(['security'])
+}).prefix('/plan-activities')
 
 // === ROOMS ===
 Route.group(() => {
@@ -148,7 +148,7 @@ Route.group(() => {
   Route.post('/', 'RoomsController.create')
   Route.put('/:id', 'RoomsController.update')
   Route.delete('/:id', 'RoomsController.delete')
-}).prefix('/rooms').middleware(['security'])
+}).prefix('/rooms')
 
 // === ROUTES ===
 Route.group(() => {
@@ -157,7 +157,7 @@ Route.group(() => {
   Route.post('/', 'RoutesController.create')
   Route.put('/:id', 'RoutesController.update')
   Route.delete('/:id', 'RoutesController.delete')
-}).prefix('/routes').middleware(['security'])
+}).prefix('/routes')
 
 
 // === SERVICE TRANSPORTS ===
@@ -167,7 +167,7 @@ Route.group(() => {
   Route.post('/', 'ServiceTransportsController.create')
   Route.put('/:id', 'ServiceTransportsController.update')
   Route.delete('/:id', 'ServiceTransportsController.delete')
-}).prefix('/service-transports').middleware(['security'])
+}).prefix('/service-transports')
 
 // === TOURIST PLANS ===
 Route.group(() => {
@@ -176,7 +176,7 @@ Route.group(() => {
   Route.post('/', 'TouristPlansController.create')
   Route.put('/:id', 'TouristPlansController.update')
   Route.delete('/:id', 'TouristPlansController.delete')
-}).prefix('/tourist-plans').middleware(['security'])
+}).prefix('/tourist-plans')
 
 // === TRANSPORTATION ITINERARIES ===
 Route.group(() => {
@@ -185,7 +185,7 @@ Route.group(() => {
   Route.post('/', 'TransportationItinerariesController.create')
   Route.put('/:id', 'TransportationItinerariesController.update')
   Route.delete('/:id', 'TransportationItinerariesController.delete')
-}).prefix('/transportation-itineraries').middleware(['security'])
+}).prefix('/transportation-itineraries')
 
 // === TRAVEL PLANS ===
 Route.group(() => {
@@ -194,7 +194,7 @@ Route.group(() => {
   Route.post('/', 'TravelPlansController.create')
   Route.put('/:id', 'TravelPlansController.update')
   Route.delete('/:id', 'TravelPlansController.delete')
-}).prefix('/travel-plans').middleware(['security'])
+}).prefix('/travel-plans')
 
 // === TRAVELS ===
 Route.group(() => {
@@ -203,7 +203,7 @@ Route.group(() => {
   Route.post('/', 'TravelsController.create')
   Route.put('/:id', 'TravelsController.update')
   Route.delete('/:id', 'TravelsController.delete')
-}).prefix('/travels').middleware(['security'])
+}).prefix('/travels')
 
 // === VEHICULES ===
 Route.group(() => {
@@ -212,7 +212,7 @@ Route.group(() => {
   Route.post('/', 'VehiculesController.create')
   Route.put('/:id', 'VehiculesController.update')
   Route.delete('/:id', 'VehiculesController.delete')
-}).prefix('/vehicules').middleware(['security'])
+}).prefix('/vehicules')
 
 Route.group(() => {
   Route.get('/', 'ClientTravelsController.find')
@@ -223,7 +223,7 @@ Route.group(() => {
 
   Route.get('/client/:id', 'ClientTravelsController.getTravelsByClient')
   Route.get('/travel/:id', 'ClientTravelsController.getClientsByTravel')
-}).prefix('client-travels').middleware(['security'])
+}).prefix('client-travels')
 
 
 // =========================================================
@@ -237,7 +237,7 @@ Route.group(() => {
   Route.delete('/:id', 'AdministratorsController.delete')
   Route.delete('/user/:userId', 'AdministratorsController.deleteByUserId')
 })
-  .prefix('administrators').middleware(['security'])
+  .prefix('administrators')
 
 // =========================================================
 // GUIDES
@@ -250,7 +250,7 @@ Route.group(() => {
   Route.delete('/:id', 'GuidesController.delete')
   Route.delete('/user/:userId', 'GuidesController.deleteByUserId')
 })
-  .prefix('guides').middleware(['security'])
+  .prefix('guides')
 
 
 
