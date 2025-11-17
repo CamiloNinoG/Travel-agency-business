@@ -6,8 +6,14 @@ export default class GuideValidator {
 
   public schema = schema.create({
     idUser: schema.string([
-      rules.unique({ table: 'guides', column: 'id_user' }),
-    ]),
+      rules.unique({
+        table: 'guides',
+        column: 'id_user',
+        whereNot: {
+          id: this.ctx.request.param('id'), // excluye el registro actual en un update
+        }
+      }),
+    ])
   })
 
   public messages: CustomMessages = {
