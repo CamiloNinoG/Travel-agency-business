@@ -8,7 +8,7 @@ export default class Client extends BaseModel {
   public id: number;
 
   @column({ columnName: "id_user" })
-  public idUser: string;
+  public id_user: string;
 
   @column()
   public phone: string;

@@ -7,7 +7,7 @@ import ConductorValidator from 'App/Validators/ConductorValidator';
 export default class ConductorsController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
-            return await Conductor.findOrFail(params.id);
+            return await Conductor.find(params.id);
         }
 
         const data = request.all();
@@ -65,7 +65,7 @@ export default class ConductorsController {
         // 1️⃣ Traer todos los conductores
         const conductores = await Conductor.query().select('email', 'nombre')
         if (conductores.length === 0) {
-        return response.status(404).json({ message: 'No hay conductores para notificar' })
+            return response.status(404).json({ message: 'No hay conductores para notificar' })
         }
 
         // 2️⃣ Enviar notificación a cada conductor

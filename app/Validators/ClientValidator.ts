@@ -5,7 +5,7 @@ export default class ClientValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    idUser: schema.string([
+    id_user: schema.string([
       rules.unique({ table: 'clients', column: 'id_user' }),
     ]),
 

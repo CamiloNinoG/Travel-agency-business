@@ -4,7 +4,9 @@ export default class EmailNotification {
 public static async sendNotification(payload: Record<string, any>) {
     try {
       const baseUrl = Env.get('MS_NOTIFICATION')
-      const url = `${baseUrl}/login-notification` 
+      const url = `${baseUrl}/alert-notification` 
+
+      console.log("url", url)
 
       const res = await fetch(url, {
         method: 'POST',
