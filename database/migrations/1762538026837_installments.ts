@@ -6,7 +6,7 @@ export default class extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments("id");
-      table.integer("id_travel").unsigned().references("id").inTable("travels");
+      table.integer("id_travel").unsigned().references("id").inTable("travels").onDelete("CASCADE");
       table.decimal("amount", 10, 2);
       table.string("status");
       table.date("date");
