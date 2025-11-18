@@ -10,6 +10,12 @@
 */
 
 import Server from '@ioc:Adonis/Core/Server'
+// start/kernel.ts
+// import Security from 'App/Middleware/Security'
+
+Server.middleware.register([
+  () => import('App/Middleware/Security'),   // 🔥 protege TODA la API
+])
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +26,9 @@ import Server from '@ioc:Adonis/Core/Server'
 | are defined for every HTTP requests.
 |
 */
-Server.middleware.register([
-  () => import('@ioc:Adonis/Core/BodyParser'),
-])
+// Server.middleware.register([
+//   () => import('@ioc:Adonis/Core/BodyParser'),
+// ])
 
 /*
 |--------------------------------------------------------------------------
