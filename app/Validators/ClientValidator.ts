@@ -4,14 +4,18 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 export default class ClientValidator {
   constructor(protected ctx: HttpContextContract) {}
 
+  private get isUpdate() {
+    return !!this.ctx.request.param('id')   // true si hay :id
+  }
+
   public schema = schema.create({
     id_user: schema.string([
       rules.unique({
         table: 'clients',
         column: 'id_user',
-        whereNot: {
-          id: this.ctx.request.param('id'), // excluye el registro actual
-        },
+        ...(this.isUpdate && {
+          whereNot: { id: this.ctx.request.param('id') },
+        }),
       }),
     ]),
 
@@ -25,9 +29,9 @@ export default class ClientValidator {
       rules.unique({
         table: 'clients',
         column: 'cc',
-        whereNot: {
-          id: this.ctx.request.param('id'), // excluye el registro actual
-        },
+        ...(this.isUpdate && {
+          whereNot: { id: this.ctx.request.param('id') },
+        }),
       }),
       rules.regex(/^[0-9]{6,10}$/),
     ]),
