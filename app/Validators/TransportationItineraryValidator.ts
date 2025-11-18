@@ -6,15 +6,15 @@ export default class TransportationItineraryValidator {
 
   public schema = schema.create({
     // 1. Corregido el nombre a 'idService' y añadida la regla exists para opcionales
-    id_service: schema.number.optional([
+    idService: schema.number.optional([
       rules.exists({ table: 'service_transports', column: 'id' }),
     ]), 
     
-    id_travel: schema.number([
+    idTravel: schema.number([
       rules.exists({ table: 'travels', column: 'id' }),
     ]),
     
-    id_route: schema.number([
+    idRoute: schema.number([
       rules.exists({ table: 'routes', column: 'id' }),
     ]),
     

@@ -5,16 +5,28 @@ export default class BusValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    idVehicule: schema.number([
-      rules.exists({ table: 'vehicules', column: 'id' }),
-      rules.unique({ table: 'buses', column: 'id_vehicule' }),
+    idVehicule: schema.number.optional([
+      rules.exists({ table: "buses", column: "idVehicule" }),
+
+      rules.unique({
+        table: "buses",
+        column: "id_vehicule",
+        whereNot: { id_bus: this.ctx.params.id }, // 👈 AJUSTADO
+      }),
     ]),
-    idHotel: schema.number([
-      rules.exists({ table: 'hotels', column: 'id' }),
+
+    idHotel: schema.number.optional([
+      rules.exists({ table: "hotels", column: "id" }),
     ]),
-    plate: schema.string([
+
+    plate: schema.string.optional([
       rules.regex(/^[A-Z0-9-]{5,10}$/),
-      rules.unique({ table: 'buses', column: 'plate' }),
+
+      rules.unique({
+        table: "buses",
+        column: "plate",
+        whereNot: { id_vehicule: this.ctx.params.id }, // 👈 PK correcto
+      }),
     ]),
   })
 

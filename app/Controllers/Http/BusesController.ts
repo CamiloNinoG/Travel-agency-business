@@ -9,9 +9,14 @@ export default class BusesController {
       await bus.load('vehicule')
       return bus
     } else {
-      const page = request.input('page', 1)
-      const perPage = request.input('per_page', 20)
-      return await Bus.query().paginate(page, perPage)
+      const data = request.all();
+      if ("page" in data && "per_page" in data) {
+        const page = request.input("page", 1);
+        const perPage = request.input("per_page", 20);
+        return await Bus.query().paginate(page, perPage);
+      } else {
+        return await Bus.query();
+      }
     }
   }
 

@@ -5,14 +5,20 @@ export default class GPSValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    idVehicule: schema.number([
-      rules.exists({ table: 'vehicules', column: 'id' }),
+    idVehicule: schema.number.optional([
+      rules.exists({
+        table: "vehicules",
+        column: "id",
+        whereNot: this.ctx.params.id ? { id: this.ctx.params.id } : {},
+      }),
     ]),
-    latitud: schema.string([
-      rules.regex(/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)/), // validación básica de latitud
+
+    latitud: schema.string.optional([
+      rules.regex(/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)/),
     ]),
-    longitude: schema.string([
-      rules.regex(/^[-+]?((1[0-7]\d)|(\d{1,2}))(\.\d+)?|180(\.0+)?/), // validación básica de longitud
+
+    longitude: schema.string.optional([
+      rules.regex(/^[-+]?((1[0-7]\d)|(\d{1,2}))(\.\d+)?|180(\.0+)?/),
     ]),
   })
 

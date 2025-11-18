@@ -13,6 +13,7 @@ import Gp from "./Gp";
 import ServiceTransport from "./ServiceTransport";
 
 export default class Vehicule extends BaseModel {
+  public static table = 'vehicules'
   @column({ isPrimary: true })
   public id: number;
 

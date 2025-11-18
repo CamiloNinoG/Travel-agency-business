@@ -10,9 +10,14 @@ export default class AirplanesController {
       await airplane.load('airline')
       return airplane
     } else {
-      const page = request.input('page', 1)
-      const perPage = request.input('per_page', 20)
-      return await Airplane.query().paginate(page, perPage)
+      const data = request.all();
+      if ("page" in data && "per_page" in data) {
+        const page = request.input("page", 1);
+        const perPage = request.input("per_page", 20);
+        return await Airplane.query().paginate(page, perPage);
+      } else {
+        return await Airplane.query();
+      }
     }
   }
 

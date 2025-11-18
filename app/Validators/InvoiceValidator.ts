@@ -5,8 +5,8 @@ export default class InvoiceValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    idClient: schema.number([
-      rules.exists({ table: 'clients', column: 'id' }),
+    cc: schema.number([
+      rules.exists({ table: 'clients', column: 'cc' }), // o 'id' si en Client tienes id
     ]),
     idCard: schema.number([
       rules.exists({ table: 'bank_cards', column: 'id' }),
@@ -18,8 +18,9 @@ export default class InvoiceValidator {
       rules.unique({ table: 'invoices', column: 'invoice_number' }),
     ]),
     amountTotal: schema.number([rules.range(1, 10000000)]),
-    date: schema.date({ format: 'yyyy-MM-dd' }),
-  })
+    expiration: schema.date({ format: 'yyyy-MM-dd' }),
+  });
+
 
   public messages: CustomMessages = {
     "idClient.exists": "El cliente especificado no existe",

@@ -16,6 +16,5 @@ export default class InstallmentValidator {
     "id_travel.exists": "El viaje asociado no existe",
     "amount.range": "El monto debe ser mayor que 0",
     "status.required": "Debe indicar el estado del pago",
-    "date.afterOrEqual": "La fecha del pago no puede ser anterior al 2020",
   }
 }

@@ -23,6 +23,9 @@ export default class Invoice extends BaseModel {
   @column({ columnName: "amount_total" })
   public amountTotal: number;
 
+  @column.dateTime({ columnName: "expiration" })
+  public expiration: DateTime;
+
   // Relaciones
   @belongsTo(() => BankCard, { foreignKey: "id_card" })
   public bankCard: BelongsTo<typeof BankCard>;
