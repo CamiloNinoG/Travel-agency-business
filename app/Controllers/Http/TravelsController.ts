@@ -25,15 +25,15 @@ export default class TravelsController {
 
     const origin = await DistanceService.getCoordinates(
       body.origin,
+      )
+
+    const destination = await DistanceService.getCoordinates(
+      body.destination
     )
 
-  const destination = await DistanceService.getCoordinates(
-    body.destination
-  )
+    const travelInfo = await DistanceService.getDistance(origin, destination)
 
-  const travelInfo = await DistanceService.getDistance(origin, destination)
-
-  body.total_price = travelInfo.distanceKm
+    body.total_price = travelInfo.distanceKm
 
     const travel = await Travel.create(body)
     return travel
