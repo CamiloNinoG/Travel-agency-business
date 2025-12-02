@@ -1,6 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Travel from 'App/Models/Travel'
 import TravelValidator from 'App/Validators/TravelValidator'
+import DistanceService from 'App/Services/LocationService'
 
 export default class TravelsController {
   public async find({ request, params }: HttpContextContract) {
@@ -21,6 +22,19 @@ export default class TravelsController {
 
   public async create({ request }: HttpContextContract) {
     const body = await request.validate(TravelValidator)
+
+    const origin = await DistanceService.getCoordinates(
+      body.origin,
+    )
+
+  const destination = await DistanceService.getCoordinates(
+    body.destination
+  )
+
+  const travelInfo = await DistanceService.getDistance(origin, destination)
+
+  body.total_price = travelInfo.distanceKm
+
     const travel = await Travel.create(body)
     return travel
   }
@@ -38,4 +52,6 @@ export default class TravelsController {
     response.status(204)
     return await travel.delete()
   }
+
+  public async
 }
