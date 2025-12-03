@@ -7,7 +7,7 @@ export default class TravelValidator {
   public schema = schema.create({
     destination: schema.string([rules.minLength(3), rules.maxLength(255)]),
     origin: schema.string([rules.minLength(3), rules.maxLength(255)]),
-    total_price: schema.number([rules.range(1, 10000000)]),
+    total_price: schema.number.optional([rules.range(1, 10000000)]),
   })
 
   public messages: CustomMessages = {
