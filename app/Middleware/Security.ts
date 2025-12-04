@@ -29,15 +29,11 @@ export default class Security {
     }
 
     try {
-      // Detecta si es un token de Firebase o uno personalizado
       let token = authHeader.replace(/^Bearer |^OAuth /, "");
       let isFirebaseToken = authHeader.startsWith("OAuth");
       let isCustomToken = authHeader.startsWith("Bearer");
 
       if (isCustomToken) {
-        // ===============================
-        // 🔹 TOKEN PERSONALIZADO (ms-security)
-        // ===============================
         const thePermission = {
           url: theRequest.url,
           method: theRequest.method,
@@ -68,7 +64,6 @@ export default class Security {
         const decoded = await admin.auth().verifyIdToken(token);
         console.log(`[SECURITY] ✔ Firebase token válido (UID: ${decoded.uid})`);
 
-        // 🔥🔥 ENVIAR PERMISOS A MS-SECURITY TAMBIÉN 🔥🔥
         const thePermission = {
           url: theRequest.url.replace(/^\/api/, ""),
           method: theRequest.method,

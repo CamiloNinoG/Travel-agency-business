@@ -6,7 +6,7 @@ export default class ItineraryRoomValidator {
 
   public schema = schema.create({
     idItinerary: schema.number([
-      rules.exists({ table: 'itineraries', column: 'id' }), // o 'travels' si hace referencia a Travel
+      rules.exists({ table: 'transportation_itineraries', column: 'id' }), // o 'travels' si hace referencia a Travel
     ]),
     idRoom: schema.number([
       rules.exists({ table: 'rooms', column: 'id' }),

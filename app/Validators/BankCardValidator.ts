@@ -23,10 +23,10 @@ export default class BankCardValidator {
   })
 
   public messages: CustomMessages = {
-    "idClient.exists": "El cliente asociado no existe",
-    "cardNumber.range": "El número de tarjeta debe tener 16 dígitos",
-    "cardNumber.unique": "Esta tarjeta ya está registrada",
-    "CCV.regex": "El código CCV debe tener 3 o 4 dígitos numéricos",
+    "id_client.exists": "El cliente asociado no existe",
+    "card_number.range": "El número de tarjeta debe tener 6 dígitos",
+    "card_number.unique": "Esta tarjeta ya está registrada",
+    "ccv.regex": "El código CCV debe tener 3 o 4 dígitos numéricos",
     "expiration.after": "La fecha de expiración debe ser posterior a hoy",
   }
 }

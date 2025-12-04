@@ -5,11 +5,17 @@ import ItineraryRoomValidator from 'App/Validators/ItineraryRoomValidator'
 export default class ItineraryRoomsController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
-      return await ItineraryRoom.findOrFail(params.id)
+      return await ItineraryRoom.findOrFail(params.id);
     } else {
-      const page = request.input('page', 1)
-      const perPage = request.input('per_page', 20)
-      return await ItineraryRoom.query().paginate(page, perPage)
+      const page = request.input("page", 1);
+      const perPage = request.input("per_page", 20);
+
+      const result = await ItineraryRoom.query().paginate(page, perPage);
+
+      // Convertimos el paginator a JSON
+      const { data } = result.toJSON();
+
+      return data; 
     }
   }
 

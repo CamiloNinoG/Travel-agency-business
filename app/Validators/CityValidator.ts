@@ -11,7 +11,7 @@ export default class CityValidator {
   public messages = {
     "name.required": "El nombre de la ciudad es obligatorio.",
     "name.maxLength":
-      "El nombre de la ciudad no puede superar los 100 caracteres.",
+    "El nombre de la ciudad no puede superar los 100 caracteres.",
     "ubication.required": "La ubicación de la ciudad es obligatoria.",
     "ubication.maxLength": "La ubicación no puede superar los 150 caracteres.",
   };

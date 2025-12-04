@@ -5,7 +5,7 @@ export default class ClientValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    idUser: schema.string([
+    id_user: schema.string([
       rules.unique({ table: 'clients', column: 'id_user' }),
     ]),
 
@@ -22,7 +22,7 @@ export default class ClientValidator {
   })
 
   public messages = {
-    'idUser.unique': 'Este usuario ya tiene un cliente registrado.',
+    'id_user.unique': 'Este usuario ya tiene un cliente registrado.',
     'phone.regex': 'El número de teléfono debe tener exactamente 10 dígitos numéricos.',
     'cc.unique': 'Ya existe un cliente con esta cédula.',
     'cc.regex': 'La cédula debe contener solo dígitos y tener entre 6 y 10 caracteres.',

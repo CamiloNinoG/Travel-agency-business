@@ -5,15 +5,16 @@ import TouristPlanValidator from 'App/Validators/TouristPlanValidator'
 export default class TouristPlansController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
-      const plan = await TouristPlan.findOrFail(params.id)
-      return plan
+      return await TouristPlan.findOrFail(params.id);
     } else {
-      const page = request.input('page', 1)
-      const perPage = request.input('per_page', 20)
-      return await TouristPlan.query().paginate(page, perPage)
+      const page = request.input("page", 1);
+      const perPage = request.input("per_page", 20);
+      const result = await TouristPlan.query().paginate(page, perPage);
+      const { data } = result.toJSON();
+
+      return data;
     }
   }
-
   public async create({ request }: HttpContextContract) {
     const data = await request.validate(TouristPlanValidator)
     return await TouristPlan.create(data)

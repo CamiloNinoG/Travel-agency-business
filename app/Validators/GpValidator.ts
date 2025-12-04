@@ -9,10 +9,10 @@ export default class GPSValidator {
       rules.exists({ table: 'vehicules', column: 'id' }),
     ]),
     latitud: schema.string([
-      rules.regex(/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)/), // validación básica de latitud
+      rules.regex(/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)/), 
     ]),
     longitude: schema.string([
-      rules.regex(/^[-+]?((1[0-7]\d)|(\d{1,2}))(\.\d+)?|180(\.0+)?/), // validación básica de longitud
+      rules.regex(/^[-+]?((1[0-7]\d)|(\d{1,2}))(\.\d+)?|180(\.0+)?/), 
     ]),
   })
 

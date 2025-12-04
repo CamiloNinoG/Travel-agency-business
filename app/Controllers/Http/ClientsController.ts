@@ -1,19 +1,22 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Client from "App/Models/Client";
 import ClientValidator from "App/Validators/ClientValidator";
+import ClientUpdateValidator from "App/Validators/ClientupdateValidator";
 
 export default class ClientsController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
+      return await Client.findOrFail(params.id);
     } else {
-      const data = request.all();
-      if ("page" in data && "per_page" in data) {
-        const page = request.input("page", 1);
-        const perPage = request.input("per_page", 20);
-        return await Client.query().paginate(page, perPage);
-      } else {
-        return await Client.query();
-      }
+      const page = request.input("page", 1);
+      const perPage = request.input("per_page", 20);
+
+      const result = await Client.query().paginate(page, perPage);
+
+      // Convertimos el paginator a JSON
+      const { data } = result.toJSON();
+
+      return data; // sin meta
     }
   }
 
@@ -24,7 +27,7 @@ export default class ClientsController {
 
   public async update({ params, request }: HttpContextContract) {
     const client = await Client.findOrFail(params.id);
-    const data = await request.validate(ClientValidator);
+    const data = await request.validate(ClientUpdateValidator);
     client.merge(data);
     await client.save();
     return client;

@@ -5,7 +5,7 @@ export default class RoomValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    id_hotel: schema.number([
+    idHotel: schema.number([
       rules.exists({ table: 'hotels', column: 'id' }),
     ]),
     price_room: schema.number([
@@ -18,8 +18,9 @@ export default class RoomValidator {
   });
 
   public messages: CustomMessages = {
-    "id_hotel.exists": "El hotel indicado no existe",
-    "price_r oom.range": "El precio de la habitación debe ser mayor que 0",
+    "idHotel.exists": "El hotel indicado no existe",
+    "price_room.range": "El precio de la habitación debe ser mayor que 0",
     "type.minLength": "El tipo de habitación debe tener al menos 3 caracteres",
   };
 }
+  
