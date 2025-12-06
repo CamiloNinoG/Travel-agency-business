@@ -5,7 +5,7 @@ export default class GPSValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    idVehicule: schema.number([
+    id_vehicule: schema.number([
       rules.exists({ table: 'vehicules', column: 'id' }),
     ]),
     latitud: schema.string([
@@ -17,7 +17,7 @@ export default class GPSValidator {
   })
 
   public messages: CustomMessages = {
-    "idVehicule.exists": "El vehículo asociado no existe",
+    "id_vehicule.exists": "El vehículo asociado no existe",
     "latitud.regex": "La latitud debe estar en formato válido (-90 a 90)",
     "longitude.regex": "La longitud debe estar en formato válido (-180 a 180)",
   }

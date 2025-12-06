@@ -30,6 +30,9 @@ export default class BankCard extends BaseModel {
 
   @column()
   public default: boolean;
+  
+  @column()
+  public balance: number;
 
   @belongsTo(() => Client, { foreignKey: "idClient" })
   public client: BelongsTo<typeof Client>;

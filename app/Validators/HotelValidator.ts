@@ -5,11 +5,11 @@ export default class HotelValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    idCity: schema.number([
+    id_city: schema.number([
       rules.exists({ table: 'cities', column: 'id' }),
     ]),
 
-    idAdmin: schema.number([
+    id_admin: schema.number([
       rules.exists({ table: 'administrators', column: 'id' }),
     ]),
 
@@ -30,8 +30,8 @@ export default class HotelValidator {
   });
 
   public messages: CustomMessages = {
-    "idCity.exists": "La ciudad indicada no existe",
-    "idAdmin.exists": "El administrador indicado no existe",
+    "id_city.exists": "La ciudad indicada no existe",
+    "id_admin.exists": "El administrador indicado no existe",
     "name.minLength": "El nombre del hotel debe tener al menos 3 caracteres",
     "capacity.range": "La capacidad debe ser un número positivo",
     "address.required": "La dirección del hotel es obligatoria",

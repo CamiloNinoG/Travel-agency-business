@@ -17,8 +17,8 @@ export default class RouteValidator {
   });
 
   public messages: CustomMessages = {
-    "idOrigin.exists": "El origen indicado no existe",
-    "idDestination.exists": "El destino indicado no existe",
+    "id_origin.exists": "El origen indicado no existe",
+    "id_destination.exists": "El destino indicado no existe",
     "duration.range": "La duración debe estar entre 1 y 1000 unidades válidas",
   };
 }

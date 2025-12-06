@@ -5,16 +5,16 @@ export default class PlanActivityValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    idActivity: schema.number([
+    id_activity: schema.number([
       rules.exists({ table: 'activities', column: 'id' }),
     ]),
-    idPlan: schema.number([
+    id_plan: schema.number([
       rules.exists({ table: 'tourist_plans', column: 'id' }),
     ]),
   });
 
   public messages: CustomMessages = {
-    "idActivity.exists": "La actividad indicada no existe",
-    "idPlan.exists": "El plan turístico indicado no existe",
+    "id_activity.exists": "La actividad indicada no existe",
+    "id_plan.exists": "El plan turístico indicado no existe",
   };
 }
