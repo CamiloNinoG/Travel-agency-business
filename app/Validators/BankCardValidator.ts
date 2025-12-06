@@ -12,7 +12,7 @@ export default class BankCardValidator {
     card_name: schema.string([rules.minLength(3), rules.maxLength(100)]),
     bank: schema.string([rules.minLength(3), rules.maxLength(100)]),
     card_number: schema.number([
-      rules.range(100000, 999999), // Asumí que esto debería ser más largo, pero mantengo tu rango original
+      rules.range(100000, 999999), 
       rules.unique({ table: 'bank_cards', column: 'card_number' }),
     ]),
     ccv: schema.string([rules.regex(/^\d{3,4}$/)]),
@@ -26,9 +26,9 @@ export default class BankCardValidator {
   })
 
   public messages: CustomMessages = {
-    "idClient.exists": "El cliente asociado no existe",
-    "cardNumber.range": "El número de tarjeta debe tener 16 dígitos", // Nota: La regla range(100000, 999999) solo permite 6 dígitos.
-    "cardNumber.unique": "Esta tarjeta ya está registrada",
+    "id_client.exists": "El cliente asociado no existe",
+    "card_number.range": "El número de tarjeta debe tener 6 dígitos",
+    "card_number.unique": "Esta tarjeta ya está registrada",
     "ccv.regex": "El código CCV debe tener 3 o 4 dígitos numéricos",
     "expiration.after": "La fecha de expiración debe ser posterior a hoy",
     "balance.unsigned": "El saldo no puede ser negativo",

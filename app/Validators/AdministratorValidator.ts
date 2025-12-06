@@ -12,6 +12,6 @@ export default class AdministratorValidator {
 
   public messages: CustomMessages = {
     "id_user.required": "El usuario asociado es obligatorio",
-    "idUser.unique": "Este usuario ya tiene un cliente asociado",
+    "id_user.unique": "Este usuario ya tiene un cliente asociado",
   }
 }
