@@ -23,17 +23,17 @@ export default class TravelsController {
   public async create({ request }: HttpContextContract) {
     const body = await request.validate(TravelValidator)
 
-    const origin = await DistanceService.getCoordinates(
-      body.origin,
-      )
+    // const origin = await DistanceService.getCoordinates(
+    //   body.origin,
+    //   )
 
-    const destination = await DistanceService.getCoordinates(
-      body.destination
-    )
+    // const destination = await DistanceService.getCoordinates(
+    //   body.destination
+    // )
 
-    const travelInfo = await DistanceService.getDistance(origin, destination)
+    // const travelInfo = await DistanceService.getDistance(origin, destination)
 
-    body.total_price = travelInfo.distanceKm
+    // body.total_price = travelInfo.distanceKm
 
     const travel = await Travel.create(body)
     return travel
