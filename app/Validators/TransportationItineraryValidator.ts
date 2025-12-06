@@ -26,9 +26,9 @@ export default class TransportationItineraryValidator {
 
   public messages: CustomMessages = {
     // Claves de campos corregidas para usar camelCase:
-    "idService.exists": "El servicio indicado no existe",
-    "idTravel.exists": "El viaje indicado no existe",
-    "idRoute.exists": "La ruta indicada no existe",
+    "id_service.exists": "El servicio indicado no existe",
+    "id_travel.exists": "El viaje indicado no existe",
+    "id_route.exists": "La ruta indicada no existe",
     
     // Clave corregida a 'order' (minúsculas)
     "order.range": "El orden debe ser un número entre 1 y 100",

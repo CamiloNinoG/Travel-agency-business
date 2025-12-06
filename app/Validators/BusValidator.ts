@@ -5,7 +5,7 @@ export default class BusValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    idVehicule: schema.number([
+    id_vehicule: schema.number([
       rules.exists({ table: 'vehicules', column: 'id' }),
       rules.unique({ table: 'buses', column: 'id_vehicule' }),
     ]),

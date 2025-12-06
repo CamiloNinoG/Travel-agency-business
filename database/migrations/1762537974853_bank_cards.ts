@@ -14,6 +14,7 @@ export default class extends BaseSchema {
       table.string("ccv");
       table.date("expiration");
       table.boolean("default");
+      table.decimal("balance", 12, 2).defaultTo(0);
 
 
       /**

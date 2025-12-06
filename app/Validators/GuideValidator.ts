@@ -5,13 +5,13 @@ export default class GuideValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    idUser: schema.string([
+    id_user: schema.string([
       rules.unique({ table: 'guides', column: 'id_user' }),
     ]),
   })
 
   public messages: CustomMessages = {
-    "idUser.required": "El usuario asociado es obligatorio",
-    "idUser.unique": "Este usuario ya tiene un cliente asociado",
+    "id_user.required": "El usuario asociado es obligatorio",
+    "id_user.unique": "Este usuario ya tiene un cliente asociado",
   }
 }
