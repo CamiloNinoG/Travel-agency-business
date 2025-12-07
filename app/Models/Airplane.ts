@@ -4,12 +4,12 @@ import Vehicule from "./Vehicule";
 import Airline from "./Airline";
 
 export default class Airplane extends BaseModel {
- @column({ isPrimary: true })
-  public idVehicule: number  // PK y FK al mismo tiempo
+  @column({ isPrimary: true, columnName: 'id_vehicule' })
+  public idVehicule: number
 
-  @column()
+  @column({ columnName: 'id_airline' })
   public idAirline: number
-
+  
   @column()
   public code: string
 

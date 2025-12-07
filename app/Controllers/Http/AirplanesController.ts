@@ -12,8 +12,19 @@ export default class AirplanesController {
     } else {
       const page = request.input('page', 1)
       const perPage = request.input('per_page', 20)
-      return await Airplane.query().paginate(page, perPage)
+
+      const pagination = await Airplane.query().paginate(page, perPage)
+      return pagination.toJSON().data
     }
+  }
+
+  public async getByAirline({ params }: HttpContextContract) {
+    const airlineId = params.airlineId;
+
+    const airplanes = await Airplane.query()
+      .where("id_airline", airlineId)
+
+    return airplanes;
   }
 
   public async create({ request }: HttpContextContract) {

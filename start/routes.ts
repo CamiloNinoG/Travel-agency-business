@@ -30,6 +30,7 @@ Route.group(() => {
 Route.group(() => {
   Route.get('/', 'AirplanesController.find')            // GET all (paginado)
   Route.get('/:id', 'AirplanesController.find')         // GET by ID
+  Route.get('/airlines/:airlineId', 'AirplanesController.getByAirline')   // GET by Airline ID
   Route.post('/', 'AirplanesController.create')         // CREATE
   Route.put('/:id', 'AirplanesController.update')       // UPDATE
   Route.delete('/:id', 'AirplanesController.delete')    // DELETE
