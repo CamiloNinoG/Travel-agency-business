@@ -8,7 +8,7 @@ export default class BankCard extends BaseModel {
   public id: number;
 
   @column({ columnName: "id_client" })
-  public idClient: number;
+  public id_client: number;
 
   @column()
   public type: string;
@@ -34,7 +34,7 @@ export default class BankCard extends BaseModel {
   @column()
   public balance: number;
 
-  @belongsTo(() => Client, { foreignKey: "idClient" })
+  @belongsTo(() => Client, { foreignKey: "id_client" })
   public client: BelongsTo<typeof Client>;
 
   @hasMany(() => Invoice, { foreignKey: "id_card" })

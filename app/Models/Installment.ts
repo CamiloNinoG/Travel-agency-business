@@ -29,8 +29,8 @@ export default class Installment extends BaseModel {
   @hasOne(() => Invoice, { foreignKey: "id_installment" })
   public invoice: HasOne<typeof Invoice>;
 
-  @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime;
+  @column.dateTime({ columnName: 'created_at' })
+  public createAt: DateTime;
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;

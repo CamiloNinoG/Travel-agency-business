@@ -5,18 +5,18 @@ export default class ClientTravelValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    idTravel: schema.number([
+    id_travel: schema.number([
       rules.exists({ table: 'travels', column: 'id' }),
     ]),
-    idClient: schema.number([
+    id_client: schema.number([
       rules.exists({ table: 'clients', column: 'id' }),
     ]),
   })
 
   public messages: CustomMessages = {
-    "idTravel.required": "Debe especificar el viaje",
-    "idTravel.exists": "El viaje seleccionado no existe",
-    "idClient.required": "Debe especificar el cliente",
-    "idClient.exists": "El cliente seleccionado no existe",
+    "id_travel.required": "Debe especificar el viaje",
+    "id_travel.exists": "El viaje seleccionado no existe",
+    "id_client.required": "Debe especificar el cliente",
+    "id_client.exists": "El cliente seleccionado no existe",
   }
 }

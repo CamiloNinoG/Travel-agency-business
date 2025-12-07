@@ -7,7 +7,7 @@ export default class Administrator extends BaseModel {
   public id: number
 
   @column({ columnName: "id_user" })
-  public idUser: string
+  public id_user: string
 
   @hasMany(() => Hotel, { foreignKey: 'id_admin' })
   public hotels: HasMany<typeof Hotel>

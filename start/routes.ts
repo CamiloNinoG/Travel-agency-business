@@ -40,7 +40,8 @@ Route.group(() => {
    ========================================================= */
 Route.group(() => {
   Route.get('/', 'BankCardsController.find')            // GET all (paginado)
-  Route.get('/:id', 'BankCardsController.find')         // GET by ID
+  Route.get('/:id', 'BankCardsController.find') 
+  Route.get('/by-client/:id_client', 'BankCardsController.findByClient')
   Route.post('/', 'BankCardsController.create')         // CREATE
   Route.put('/:id', 'BankCardsController.update')       // UPDATE
   Route.delete('/:id', 'BankCardsController.delete')    // DELETE
@@ -70,12 +71,14 @@ Route.group(() => {
   Route.get('/clients', 'ClientsController.find')
   Route.get('/clients/:id', 'ClientsController.find')
   Route.put('/clients/:id', 'ClientsController.update')
+  Route.post('/clients', 'ClientsController.create')
   Route.delete('/clients/:id', 'ClientsController.delete')
-  Route.delete('/clients/user/:id_user', 'ClientsController.deleteByUserId')
+  Route.get('/clients/user/:id_user', 'ClientsController.getByUser')
+  Route.get("/clients/by-user/:id", "ClientsController.getByUser");
 })
 
 // Ruta
-Route.post('/clients', 'ClientsController.create')
+
 
 // === GPS ===
 Route.group(() => {
@@ -108,9 +111,12 @@ Route.group(() => {
 Route.group(() => {
   Route.get('/', 'InstallmentsController.find')
   Route.get('/:id', 'InstallmentsController.find')
+  Route.get('/travel/:travelId', 'InstallmentsController.findByTravel')
   Route.post('/', 'InstallmentsController.create')
   Route.put('/:id', 'InstallmentsController.update')
   Route.delete('/:id', 'InstallmentsController.delete')
+  Route.get('/by-client/:clientId', 'InstallmentsController.findByClient')
+
 }).prefix('/installments')
 
 
@@ -118,6 +124,7 @@ Route.group(() => {
 Route.group(() => {
   Route.get('/', 'InvoicesController.find')
   Route.get('/:id', 'InvoicesController.find')
+  Route.get('/by-cc/:cc', 'InvoicesController.findByCC')
   Route.post('/', 'InvoicesController.create')
   Route.put('/:id', 'InvoicesController.update')
   Route.delete('/:id', 'InvoicesController.delete')

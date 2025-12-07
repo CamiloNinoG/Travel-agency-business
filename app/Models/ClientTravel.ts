@@ -5,10 +5,10 @@ import Travel from "./Travel";
 
 export default class ClientTravel extends BaseModel {
   @column({ columnName: "id_travel" })
-  public idTravel: number;
+  public id_travel: number;
 
   @column({ columnName: "id_client" })
-  public idClient: number;
+  public id_client: number;
 
   @belongsTo(() => Client, { foreignKey: "id_client" })
   public client: BelongsTo<typeof Client>;
