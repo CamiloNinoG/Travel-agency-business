@@ -19,10 +19,10 @@ export default class Client extends BaseModel {
   @column()
   public cc: string;
 
-  @hasMany(() => BankCard, { foreignKey: "idClient" })
+  @hasMany(() => BankCard, { foreignKey: "id_client" })
   public bankCards: HasMany<typeof BankCard>;
 
-  @hasMany(() => ClientTravel, { foreignKey: "idClient" })
+  @hasMany(() => ClientTravel, { foreignKey: "id_client" })
   public travels: HasMany<typeof ClientTravel>;
 
   @column.dateTime({ autoCreate: true })

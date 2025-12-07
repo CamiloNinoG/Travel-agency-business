@@ -28,7 +28,7 @@ export default class extends BaseSchema {
 
       table.integer("invoice_number").notNullable();
       table.decimal("amount_total", 10, 2).notNullable();
-      table.timestamp("expiration", { useTz: false }).notNullable();
+      // table.timestamp("expiration", { useTz: false }).notNullable();
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

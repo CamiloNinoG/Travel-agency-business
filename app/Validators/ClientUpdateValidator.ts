@@ -1,40 +1,38 @@
-import { schema, CustomMessages } from '@ioc:Adonis/Core/Validator'
+import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-export default class ClientUpdateValidator {
+export default class ClientUpdate {
   constructor(protected ctx: HttpContextContract) {}
 
-  /*
-   * Define schema to validate the "shape", "type", "formatting" and "integrity" of data.
-   *
-   * For example:
-   * 1. The username must be of data type string. But then also, it should
-   *    not contain special characters or numbers.
-   *    ```
-   *     schema.string([ rules.alpha() ])
-   *    ```
-   *
-   * 2. The email must be of data type string, formatted as a valid
-   *    email. But also, not used by any other user.
-   *    ```
-   *     schema.string([
-   *       rules.email(),
-   *       rules.unique({ table: 'users', column: 'email' }),
-   *     ])
-   *    ```
-   */
-  public schema = schema.create({})
+  public schema = schema.create({
+    id_user: schema.string([
+      rules.unique({
+        table: 'clients',
+        column: 'id_user',
+        whereNot: { id: this.ctx.params.id }, // ⬅ ignorar el cliente actual
+      }),
+    ]),
 
-  /**
-   * Custom messages for validation failures. You can make use of dot notation `(.)`
-   * for targeting nested fields and array expressions `(*)` for targeting all
-   * children of an array. For example:
-   *
-   * {
-   *   'profile.username.required': 'Username is required',
-   *   'scores.*.number': 'Define scores as valid numbers'
-   * }
-   *
-   */
-  public messages: CustomMessages = {}
+    phone: schema.string.optional([
+      rules.regex(/^[0-9]{10}$/),
+    ]),
+
+    city: schema.string.optional({ trim: true }),
+
+    cc: schema.string.optional([
+      rules.unique({
+        table: 'clients',
+        column: 'cc',
+        whereNot: { id: this.ctx.params.id }, // ⬅ ignorar el cliente actual
+      }),
+      rules.regex(/^[0-9]{6,10}$/),
+    ]),
+  })
+
+  public messages = {
+    'id_user.unique': 'Este usuario ya tiene un cliente registrado.',
+    'phone.regex': 'El número de teléfono debe tener exactamente 10 dígitos numéricos.',
+    'cc.unique': 'Ya existe un cliente con esta cédula.',
+    'cc.regex': 'La cédula debe contener solo dígitos y tener entre 6 y 10 caracteres.',
+  }
 }

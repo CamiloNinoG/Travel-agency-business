@@ -19,6 +19,16 @@ export default class BankCardsController {
       }
     }
   }
+  public async findByClient({ params, response }: HttpContextContract) {
+  const { id_client } = params
+
+  const cards = await BankCard
+    .query()
+    .where('id_client', id_client)
+    .orderBy('default', 'desc') 
+
+  return response.ok(cards)
+}
 
   public async create({ request }: HttpContextContract) {
     const body = await request.validate(BankCardValidator)
