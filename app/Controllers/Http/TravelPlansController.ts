@@ -27,8 +27,12 @@ export default class TravelPlansController {
   }
 
   public async delete({ params, response }: HttpContextContract) {
-    const travelPlan = await TravelPlan.findOrFail(params.id)
-    await travelPlan.delete()
-    return response.status(204)
+    const travelId = params.id;
+
+    await TravelPlan.query()
+      .where("id_travel", travelId)
+      .delete();
+
+    return response.status(204);
   }
 }
