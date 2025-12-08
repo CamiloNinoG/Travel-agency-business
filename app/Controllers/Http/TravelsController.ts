@@ -1,7 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Travel from 'App/Models/Travel'
 import TravelValidator from 'App/Validators/TravelValidator'
-import DistanceService from 'App/Services/LocationService'
+// import DistanceService from 'App/Services/LocationService'
 
 export default class TravelsController {
   public async find({ request, params }: HttpContextContract) {

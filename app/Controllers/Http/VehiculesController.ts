@@ -5,18 +5,13 @@ import VehiculeValidator from 'App/Validators/VehiculeValidator'
 export default class VehiculesController {
     public async find({ request, params }: HttpContextContract) {
       if (params.id) {
-        const vehicule = await Vehicule.findOrFail(params.id)
-        // await vehicule.load('buses')
-        return vehicule
+        return await Vehicule.findOrFail(params.id)
       } else {
-        const data = request.all()
-        if ('page' in data && 'per_page' in data) {
-          const page = request.input('page', 1)
-          const perPage = request.input('per_page', 20)
-          return await Vehicule.query().paginate(page, perPage)
-        } else {
-          // return await Vehicule.query().preload('vehicules')
-        }
+        const page = request.input('page', 1)
+        const perPage = request.input('per_page', 20)
+
+        const pagination = await Vehicule.query().paginate(page, perPage)
+        return pagination.toJSON().data
       }
     }
 
