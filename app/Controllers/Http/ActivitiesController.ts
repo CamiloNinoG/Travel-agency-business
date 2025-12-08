@@ -21,6 +21,13 @@ public async find({ request, params }: HttpContextContract) {
   return await Activity.query()
 }
 
+public async getByCity({ params }: HttpContextContract) {
+  const cityId = params.cityId;
+
+  const activities = await Activity.query().where('id_city', cityId);
+
+  return activities;
+}
 
   public async create({ request }: HttpContextContract) {
     const data = await request.validate(ActivityValidator);
