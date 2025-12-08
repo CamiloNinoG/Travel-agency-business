@@ -80,15 +80,17 @@ Route.group(() => {
 
 // Ruta
 
-
 // === GPS ===
 Route.group(() => {
   Route.get('/', 'GpsController.find')
   Route.get('/:id', 'GpsController.find')
-  Route.post('/', 'GpsController.create')
+  // Route.post('/', 'GpsController.create')
   Route.put('/:id', 'GpsController.update')
   Route.delete('/:id', 'GpsController.delete')
 }).prefix('/gps')
+
+// tracking
+Route.post('/gps', 'GpsController.store');
 
 // === GUIDE ACTIVITIES ===
 Route.group(() => {
@@ -261,6 +263,17 @@ Route.group(() => {
   Route.delete('/user/:userId', 'GuidesController.deleteByUserId')
 })
   .prefix('guides')
+
+
+// PAYMENT
+
+Route.group(() => {
+  Route.post('/payments/process', 'PaymentsController.create')
+})
+
+
+
+
 
 
 

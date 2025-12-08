@@ -8,10 +8,10 @@ export default class ServiceTransport extends BaseModel {
   public id: number;
 
   @column({ columnName: "id_vehicule" })
-  public idVehicule: number;
+  public id_vehicule: number;
 
   @column({ columnName: "id_route" })
-  public idRoute: number;
+  public id_route: number;
 
   @column.date()
   public start_date: DateTime;

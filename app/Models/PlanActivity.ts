@@ -5,10 +5,10 @@ import Activity from "./Activity";
 
 export default class PlanActivity extends BaseModel {
   @column({ columnName: "id_activity" })
-  public idActivity: number;
+  public id_activity: number;
 
   @column({ columnName: "id_plan" })
-  public idPlan: number;
+  public id_plan: number;
 
   @belongsTo(() => TouristPlan, { foreignKey: "id_plan" })
   public plan: BelongsTo<typeof TouristPlan>;

@@ -1,4 +1,4 @@
-import Ws from "App/Services/Ws";
+import Ws from "App/Services/WsTracking";
 
 Ws.boot();
 // Listen for incoming socket connections
