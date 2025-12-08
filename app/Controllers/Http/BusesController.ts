@@ -3,17 +3,22 @@ import Bus from 'App/Models/Bus'
 import BusValidator from 'App/Validators/BusValidator'
 
 export default class BusesController {
-  public async find({ request, params }: HttpContextContract) {
-    if (params.id) {
-      const bus = await Bus.findOrFail(params.id)
-      await bus.load('vehicule')
-      return bus
-    } else {
-      const page = request.input('page', 1)
-      const perPage = request.input('per_page', 20)
-      return await Bus.query().paginate(page, perPage)
+    public async find({ request, params }: HttpContextContract) {
+      if (params.id) {
+        const bus = await Bus.findOrFail(params.id)
+        // await bus.load('buses')
+        return bus
+      } else {
+        const data = request.all()
+        if ('page' in data && 'per_page' in data) {
+          const page = request.input('page', 1)
+          const perPage = request.input('per_page', 20)
+          return await Bus.query().paginate(page, perPage)
+        } else {
+          return await Bus.query()
+        }
+      }
     }
-  }
 
   public async create({ request }: HttpContextContract) {
     const data = await request.validate(BusValidator)

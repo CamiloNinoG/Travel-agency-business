@@ -7,19 +7,19 @@ export default class Route extends BaseModel {
   public id: number;
 
   @column({ columnName: "id_origin" })
-  public idOrigin: number;
+  public id_origin: number;
 
   @column({ columnName: "id_destination" })
-  public idDestination: number;
+  public id_destination: number;
 
   @column()
   public duration: number;
 
   // Relaciones con City
-  @belongsTo(() => City, { foreignKey: "idOrigin" })
+  @belongsTo(() => City, { foreignKey: "id_origin" })
   public originCity: BelongsTo<typeof City>;
 
-  @belongsTo(() => City, { foreignKey: "idDestination" })
+  @belongsTo(() => City, { foreignKey: "id_destination" })
   public destinationCity: BelongsTo<typeof City>;
 
   @column.dateTime({ autoCreate: true })
