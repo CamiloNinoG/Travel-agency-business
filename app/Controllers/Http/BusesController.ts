@@ -11,8 +11,15 @@ export default class BusesController {
     } else {
       const page = request.input('page', 1)
       const perPage = request.input('per_page', 20)
-      return await Bus.query().paginate(page, perPage)
+
+      const pagination = await Bus.query().paginate(page, perPage)
+      return pagination.toJSON().data
     }
+  }
+
+  public async findByHotel({ params }: HttpContextContract) {
+    const buses = await Bus.query().where('hotel_id', params.hotelId)
+    return buses
   }
 
   public async create({ request }: HttpContextContract) {
