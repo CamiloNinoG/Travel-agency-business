@@ -21,6 +21,15 @@ export default class HotelsController {
     }
   }
 
+  public async findByCity({ params }: HttpContextContract) {
+    const cityId = params.cityId;
+    const hotels = await Hotel
+      .query()
+      .where("id_city", cityId)
+
+    return hotels
+  }
+
   public async create({ request }: HttpContextContract) {
     const body = await request.validate(HotelValidator)
     const hotel = await Hotel.create(body)

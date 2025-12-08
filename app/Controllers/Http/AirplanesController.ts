@@ -20,6 +20,15 @@ export default class AirplanesController {
       }
     }
 
+  public async getByAirline({ params }: HttpContextContract) {
+    const airlineId = params.airlineId;
+
+    const airplanes = await Airplane.query()
+      .where("id_airline", airlineId)
+
+    return airplanes;
+  }
+
   public async create({ request }: HttpContextContract) {
     const data = await request.validate(AirplaneValidator)
     return await Airplane.create(data)
