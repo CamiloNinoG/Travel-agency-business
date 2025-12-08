@@ -9,17 +9,20 @@ export default class ServiceTransportsController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
       const service = await ServiceTransport.findOrFail(params.id)
+      console.log("service", service)
       await service.load('vehicule')
       return service
     } else {
       const page = request.input('page', 1)
       const perPage = request.input('per_page', 20)
-      return await ServiceTransport.query().paginate(page, perPage)
+      const pagination = await ServiceTransport.query().paginate(page, perPage)
+      return pagination.toJSON().data
     }
   }
 
   public async create({ request }: HttpContextContract) {
     const data = await request.validate(ServiceTransportValidator)
+    console.log("Data de servicio: ", data);
 
     if (!data.price) {
       const routeInfo = await Route.findOrFail(data.id_route)
