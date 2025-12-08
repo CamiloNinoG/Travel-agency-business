@@ -21,6 +21,15 @@ export default class RoomsController {
     }
   }
 
+  public async findByHotel({ params }: HttpContextContract) {
+    const hotelId = params.hotelId;
+    const rooms = await Room
+      .query()
+      .where("id_hotel", hotelId)
+
+    return rooms;
+  }
+
   public async create({ request }: HttpContextContract) {
     const body = await request.validate(RoomValidator)
     const room = await Room.create(body)

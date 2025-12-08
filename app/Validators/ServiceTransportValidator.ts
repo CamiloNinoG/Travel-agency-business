@@ -13,12 +13,11 @@ export default class ServiceTransportValidator {
       rules.after("today"), 
     ]),
     
-    // 💥 CORRECCIÓN CRUCIAL: Usar 'start_date' (snake_case) para afterField
-    end_date: schema.date({ format: "yyyy-MM-dd HH:mm:ss" }, [
+    end_date: schema.date.optional({ format: "yyyy-MM-dd HH:mm:ss" }, [
       rules.afterField("start_date"), 
     ]),
     
-    price: schema.number([rules.range(1, 10000000)]),
+    price: schema.number.optional([rules.range(1, 10000000)]),
   });
 
   public messages: CustomMessages = {

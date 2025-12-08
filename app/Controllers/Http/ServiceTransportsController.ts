@@ -36,6 +36,24 @@ export default class ServiceTransportsController {
     return await ServiceTransport.create(data);
   }
 
+  public async findByRoute({ params, response }: HttpContextContract) {
+    const routeId = params.routeId;
+
+    const service = await ServiceTransport
+      .query()
+      .where("id_route", routeId)
+      .preload("vehicule")
+      .first();
+
+    if (!service) {
+      return response.status(404).json({
+        message: "No existe un servicio de transporte para esta ruta",
+      });
+    }
+
+    return service;
+  }
+
   public async update({ params, request }: HttpContextContract) {
     const service = await ServiceTransport.findOrFail(params.id);
     const data = await request.validate(ServiceTransportValidator);

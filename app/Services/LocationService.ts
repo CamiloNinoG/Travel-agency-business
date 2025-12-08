@@ -1,8 +1,10 @@
 import fetch from 'node-fetch'
+import Env from '@ioc:Adonis/Core/Env'
 
 export default class DistanceService {
   public static async getCoordinates(city: string) {
-    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${city},Colombia`
+    const baseUrl = Env.get('NOMINATIM_BASE_URL')
+    const url = `${baseUrl}?format=json&q=${city},Colombia`
 
     const response = await fetch(url)
     const data = await response.json()
@@ -14,7 +16,9 @@ export default class DistanceService {
   }
 
   public static async getDistance(origin: any, dest: any) {
-    const url = `https://router.project-osrm.org/route/v1/driving/${origin.lon},${origin.lat};${dest.lon},${dest.lat}?overview=false`
+    const baseUrl = Env.get('OSRM_BASE_URL')
+
+    const url = `${baseUrl}/${origin.lon},${origin.lat};${dest.lon},${dest.lat}?overview=false`
 
     const response = await fetch(url)
     const data = await response.json()
@@ -22,7 +26,9 @@ export default class DistanceService {
     const route = data.routes[0]
 
     return {
-      distanceKm: route.distance / 1000,
+      distanceKm: route.distance / 1000,            
+      durationMinutes: route.duration / 60,         
+      durationHours: route.duration / 3600,         
     }
   }
 }

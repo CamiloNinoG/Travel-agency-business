@@ -1,6 +1,8 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Route from 'App/Models/Route'
+import City from 'App/Models/City'
 import RouteValidator from 'App/Validators/RouteValidator'
+import DistanceService from 'App/Services/LocationService'
 
 export default class RoutesController {
   public async find({ request, params }: HttpContextContract) {
@@ -16,6 +18,26 @@ export default class RoutesController {
 
   public async create({ request }: HttpContextContract) {
     const data = await request.validate(RouteValidator)
+
+    if (!data.duration){
+      const originCity = await City.findOrFail(data.id_origin)
+      const destinationCity = await City.findOrFail(data.id_destination)
+      
+      const originName = `${originCity.name}, ${originCity.ubication}`
+      const destinationName = `${destinationCity.name}, ${destinationCity.ubication}`
+
+      const originCoords = await DistanceService.getCoordinates(originName)
+      const destinationCoords = await DistanceService.getCoordinates(destinationName)
+
+      const routeInfo = await DistanceService.getDistance(originCoords, destinationCoords)
+
+      if (routeInfo.durationMinutes < 60) {
+        data.duration = Math.round(routeInfo.durationMinutes)
+      } else {
+        data.duration = routeInfo.durationMinutes / 60
+      }
+    }
+    
     return await Route.create(data)
   }
 

@@ -30,6 +30,7 @@ Route.group(() => {
 Route.group(() => {
   Route.get('/', 'AirplanesController.find')            // GET all (paginado)
   Route.get('/:id', 'AirplanesController.find')         // GET by ID
+  Route.get('/airlines/:airlineId', 'AirplanesController.getByAirline')   // GET by Airline ID
   Route.post('/', 'AirplanesController.create')         // CREATE
   Route.put('/:id', 'AirplanesController.update')       // UPDATE
   Route.delete('/:id', 'AirplanesController.delete')    // DELETE
@@ -104,6 +105,7 @@ Route.group(() => {
 Route.group(() => {
   Route.get('/', 'HotelsController.find')
   Route.get('/:id', 'HotelsController.find')
+  Route.get('/cities/:cityId', 'HotelsController.findByCity')
   Route.post('/', 'HotelsController.create')
   Route.put('/:id', 'HotelsController.update')
   Route.delete('/:id', 'HotelsController.delete')
@@ -154,6 +156,7 @@ Route.group(() => {
 Route.group(() => {
   Route.get('/', 'RoomsController.find')
   Route.get('/:id', 'RoomsController.find')
+Route.get('/hotels/:hotelId', 'RoomsController.findByHotel')
   Route.post('/', 'RoomsController.create')
   Route.put('/:id', 'RoomsController.update')
   Route.delete('/:id', 'RoomsController.delete')
