@@ -22,7 +22,7 @@ export default class GuidesController {
   public async create({ request }: HttpContextContract) {
     const body = await request.validate(GuideValidator)
     const guide = await Guide.create(body)
-    Ws.io.emit('notifications', { message: 'Nuevo guía creado' })
+    // Ws.io.emit('notifications', { message: 'Nuevo guía creado' })
     return guide
   }
 

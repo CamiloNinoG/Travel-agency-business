@@ -22,7 +22,10 @@ Route.group(() => {
   Route.post('/', 'AirlinesController.create')          // CREATE
   Route.put('/:id', 'AirlinesController.update')        // UPDATE
   Route.delete('/:id', 'AirlinesController.delete')     // DELETE
+
 }).prefix('airlines')
+
+  Route.get('/airplanes/airlines/:id', 'AirlinesController.getAirplanes')
 
 /* =========================================================
    AIRPLANES

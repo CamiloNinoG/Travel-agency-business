@@ -7,6 +7,7 @@ export default class AirplaneValidator {
   public schema = schema.create({
     id_vehicule: schema.number([
       rules.exists({ table: 'vehicules', column: 'id' }),
+      rules.unique({ table: 'airplanes', column: 'id_vehicule' }),
     ]),
     id_airline: schema.number([
       rules.exists({ table: 'airlines', column: 'id' }),
@@ -19,6 +20,7 @@ export default class AirplaneValidator {
 
   public messages: CustomMessages = {
     "id_vehicule.exists": "El vehículo asociado no existe",
+    "id_vehicule.unique": "Ya existe un avión con ese id de vehiculo",
     "id_airline.exists": "La aerolínea asociada no existe",
     "code.regex": "El código debe tener entre 2 y 10 caracteres alfanuméricos en mayúscula",
     "code.unique": "Ya existe un avión con ese código",

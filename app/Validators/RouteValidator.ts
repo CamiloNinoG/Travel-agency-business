@@ -11,7 +11,7 @@ export default class RouteValidator {
     id_destination: schema.number([
       rules.exists({ table: 'cities', column: 'id' }), // o 'locations'
     ]),
-    duration: schema.number([
+    duration: schema.number.optional([
       rules.range(1, 1000), // duración en minutos o kilómetros según tu caso
     ]),
   });
