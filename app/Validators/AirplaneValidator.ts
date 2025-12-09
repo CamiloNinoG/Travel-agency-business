@@ -1,26 +1,40 @@
-import { schema, CustomMessages, rules } from "@ioc:Adonis/Core/Validator"
-import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext"
+import { schema, rules, CustomMessages } from "@ioc:Adonis/Core/Validator";
+import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 
 export default class AirplaneValidator {
   constructor(protected ctx: HttpContextContract) {}
 
-  public schema = schema.create({
-    id_vehicule: schema.number([
-      rules.exists({ table: 'vehicules', column: 'id' }),
-    ]),
-    id_airline: schema.number([
-      rules.exists({ table: 'airlines', column: 'id' }),
-    ]),
-    code: schema.string([
-      rules.regex(/^[A-Z0-9]{2,10}$/),
-      rules.unique({ table: 'airplanes', column: 'code' }),
-    ]),
-  })
+  public schema = this.createSchema();
+
+  private createSchema() {
+    const isCreating = this.ctx.request.method() === "POST";
+    const currentId = this.ctx.params.id; // id del avión si es PUT/PATCH
+
+    return schema.create({
+      id_vehicule: isCreating
+        ? schema.number([rules.exists({ table: 'vehicules', column: 'id' })])
+        : schema.number.optional([rules.exists({ table: 'vehicules', column: 'id' })]),
+
+      id_airline: isCreating
+        ? schema.number([rules.exists({ table: 'airlines', column: 'id' })])
+        : schema.number.optional([rules.exists({ table: 'airlines', column: 'id' })]),
+
+      code: isCreating
+        ? schema.string([
+            rules.regex(/^[A-Z0-9]{2,10}$/),
+            rules.unique({ table: 'airplanes', column: 'code' }),
+          ])
+        : schema.string.optional([
+            rules.regex(/^[A-Z0-9]{2,10}$/),
+            rules.unique({ table: 'airplanes', column: 'code', whereNot: { id: currentId } }),
+          ]),
+    });
+  }
 
   public messages: CustomMessages = {
     "id_vehicule.exists": "El vehículo asociado no existe",
     "id_airline.exists": "La aerolínea asociada no existe",
     "code.regex": "El código debe tener entre 2 y 10 caracteres alfanuméricos en mayúscula",
     "code.unique": "Ya existe un avión con ese código",
-  }
+  };
 }

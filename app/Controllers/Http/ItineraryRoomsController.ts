@@ -9,7 +9,8 @@ export default class ItineraryRoomsController {
     } else {
       const page = request.input('page', 1)
       const perPage = request.input('per_page', 20)
-      return await ItineraryRoom.query().paginate(page, perPage)
+      const pagination = await ItineraryRoom.query().paginate(page, perPage)
+      return pagination.toJSON().data
     }
   }
 

@@ -12,7 +12,8 @@ export default class RoutesController {
     } else {
       const page = request.input('page', 1)
       const perPage = request.input('per_page', 20)
-      return await Route.query().paginate(page, perPage)
+      const pagination = await Route.query().paginate(page, perPage)
+      return pagination.toJSON().data
     }
   }
 
