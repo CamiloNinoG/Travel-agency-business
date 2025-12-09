@@ -4,19 +4,19 @@ import Vehicule from "./Vehicule";
 import Airline from "./Airline";
 
 export default class Airplane extends BaseModel {
-  @column({ isPrimary: true, columnName: 'id_vehicule' })
-  public idVehicule: number
+ @column({ isPrimary: true })
+  public id_vehicule: number  // PK y FK al mismo tiempo
 
-  @column({ columnName: 'id_airline' })
-  public idAirline: number
-  
+  @column()
+  public id_airline: number
+
   @column()
   public code: string
 
-  @belongsTo(() => Vehicule, { foreignKey: 'idVehicule' })
+  @belongsTo(() => Vehicule, { foreignKey: 'id_vehicule' })
   public vehicule: BelongsTo<typeof Vehicule>
 
-  @belongsTo(() => Airline, { foreignKey: 'idAirline' })
+  @belongsTo(() => Airline, { foreignKey: 'id_airline' })
   public airline: BelongsTo<typeof Airline>
 
   @column.dateTime({ autoCreate: true })

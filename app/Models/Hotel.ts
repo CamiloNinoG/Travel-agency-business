@@ -9,10 +9,10 @@ export default class Hotel extends BaseModel {
   public id: number
 
   @column({ columnName: 'id_city' })
-  public idCity: number
+  public id_city: number
 
   @column({ columnName: 'id_admin' })
-  public idAdmin: number
+  public id_admin: number
 
   @column()
   public name: string
