@@ -14,8 +14,22 @@ export default class BusesController {
 
       const pagination = await Bus.query().paginate(page, perPage)
       return pagination.toJSON().data
+    public async find({ request, params }: HttpContextContract) {
+      if (params.id) {
+        const bus = await Bus.findOrFail(params.id)
+        // await bus.load('buses')
+        return bus
+      } else {
+        const data = request.all()
+        if ('page' in data && 'per_page' in data) {
+          const page = request.input('page', 1)
+          const perPage = request.input('per_page', 20)
+          return await Bus.query().paginate(page, perPage)
+        } else {
+          return await Bus.query()
+        }
+      }
     }
-  }
 
   public async findByHotel({ params }: HttpContextContract) {
     const buses = await Bus.query().where('hotel_id', params.hotelId)

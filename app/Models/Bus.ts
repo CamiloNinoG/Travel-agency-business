@@ -5,18 +5,18 @@ import Hotel from "./Hotel";
 
 export default class Bus extends BaseModel {
   @column({ isPrimary: true })
-  public idVehicule: number  // PK y FK al mismo tiempo
+  public id_vehicule: number  // PK y FK al mismo tiempo
 
   @column()
-  public idHotel: number
+  public id_hotel: number
 
   @column()
   public plate: string
 
-  @belongsTo(() => Vehicule, { foreignKey: 'idVehicule' })
+  @belongsTo(() => Vehicule, { foreignKey: 'id_vehicule' })
   public vehicule: BelongsTo<typeof Vehicule>
 
-  @belongsTo(() => Hotel, { foreignKey: 'idHotel' })
+  @belongsTo(() => Hotel, { foreignKey: 'id_hotel' })
   public hotel: BelongsTo<typeof Hotel>
 
   @column.dateTime({ autoCreate: true })

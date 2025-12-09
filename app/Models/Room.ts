@@ -7,7 +7,7 @@ export default class Room extends BaseModel {
   public id: number;
 
   @column({ columnName: "id_hotel" })
-  public idHotel: number;
+  public id_hotel: number;
 
   @column()
   public price_room: number;
@@ -15,7 +15,7 @@ export default class Room extends BaseModel {
   @column()
   public type: string;
 
-  @belongsTo(() => Hotel, { foreignKey: "idHotel" }) // 👈 clave del modelo actual
+  @belongsTo(() => Hotel, { foreignKey: "id_hotel" }) // 👈 clave del modelo actual
   public hotel: BelongsTo<typeof Hotel>;
 
   @column.dateTime({ autoCreate: true })

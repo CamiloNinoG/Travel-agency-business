@@ -28,8 +28,8 @@ export default class Vehicule extends BaseModel {
   @hasOne(() => Airplane, { foreignKey: "id_vehicule" })
   public airplane: HasOne<typeof Airplane>;
 
-  @hasOne(() => Gp, { foreignKey: "id_vehicule" })
-  public gps: HasOne<typeof Gp>;
+  @hasMany(() => Gp, { foreignKey: "id_vehicule" })
+  public gps: HasMany<typeof Gp>;
 
   @hasMany(() => ServiceTransport, { foreignKey: "id_vehicule" })
   public services: HasMany<typeof ServiceTransport>;
