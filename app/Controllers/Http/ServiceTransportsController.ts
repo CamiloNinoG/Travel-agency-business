@@ -27,8 +27,8 @@ export default class ServiceTransportsController {
     if (!data.price) {
       const routeInfo = await Route.findOrFail(data.id_route)
 
-      const idOrigin = routeInfo.idOrigin
-      const idDestination = routeInfo.idDestination
+      const idOrigin = routeInfo.id_origin
+      const idDestination = routeInfo.id_destination
 
       const originCity = await City.findOrFail(idOrigin)
       const destinationCity = await City.findOrFail(idDestination)
