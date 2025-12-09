@@ -29,7 +29,7 @@ export default class Hotel extends BaseModel {
   @belongsTo(() => Administrator, { foreignKey: 'id_admin' })
   public administrator: BelongsTo<typeof Administrator>
 
-  @hasMany(() => Room, { foreignKey: 'idHotel' }) 
+  @hasMany(() => Room, { foreignKey: 'id_hotel' }) 
   public rooms: HasMany<typeof Room>
 
   @column.dateTime({ autoCreate: true })
