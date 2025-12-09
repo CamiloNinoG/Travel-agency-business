@@ -14,7 +14,8 @@ public async find({ request, params }: HttpContextContract) {
   if ('page' in data && 'per_page' in data) {
     const page = request.input('page', 1)
     const perPage = request.input('per_page', 20)
-    return await Activity.query().paginate(page, perPage)
+    const pagination = await Activity.query().paginate(page, perPage)
+    return pagination.toJSON().data 
   }
 
   // Si no hay paginación -> devolver todos los registros
