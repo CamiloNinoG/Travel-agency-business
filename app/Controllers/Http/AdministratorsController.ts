@@ -22,7 +22,7 @@ export default class AdministratorsController {
   public async create({ request }: HttpContextContract) {
     const body = await request.validate(AdministratorValidator);
     const admin = await Administrator.create(body);
-    Ws.io.emit("notifications", { message: "Nuevo administrador creado" });
+    // Ws.io.emit("notifications", { message: "Nuevo administrador creado" });
     return admin;
   }
 

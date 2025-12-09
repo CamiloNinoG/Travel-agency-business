@@ -12,7 +12,7 @@ export default class RouteValidator {
       rules.exists({ table: 'cities', column: 'id' }),
     ]),
     duration: schema.number.optional([
-      rules.range(1, 100000),
+      rules.range(1, 1000), // duración en minutos o kilómetros según tu caso
     ]),
   });
 
