@@ -3,20 +3,22 @@ import Airplane from 'App/Models/Airplane'
 import AirplaneValidator from 'App/Validators/AirplaneValidator'
 
 export default class AirplanesController {
-  public async find({ request, params }: HttpContextContract) {
-    if (params.id) {
-      const airplane = await Airplane.findOrFail(params.id)
-      await airplane.load('vehicule')
-      await airplane.load('airline')
-      return airplane
-    } else {
-      const page = request.input('page', 1)
-      const perPage = request.input('per_page', 20)
-
-      const pagination = await Airplane.query().paginate(page, perPage)
-      return pagination.toJSON().data
+    public async find({ request, params }: HttpContextContract) {
+      if (params.id) {
+        const airplane = await Airplane.findOrFail(params.id)
+        // await airplane.load('airplanees')
+        return airplane
+      } else {
+        const data = request.all()
+        if ('page' in data && 'per_page' in data) {
+          const page = request.input('page', 1)
+          const perPage = request.input('per_page', 20)
+          return await Airplane.query().paginate(page, perPage)
+        } else {
+          return await Airplane.query()
+        }
+      }
     }
-  }
 
   public async getByAirline({ params }: HttpContextContract) {
     const airlineId = params.airlineId;

@@ -9,7 +9,7 @@ export default class Airline extends BaseModel {
   @column()
   public name: string;
 
-  @hasMany(() => Airplane, { foreignKey: "idAirline" })
+  @hasMany(() => Airplane, { foreignKey: "id_airline" })
   public airplanes: HasMany<typeof Airplane>;
 
   @column.dateTime({ autoCreate: true })

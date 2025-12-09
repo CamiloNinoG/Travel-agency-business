@@ -9,7 +9,7 @@ export default class BusValidator {
       rules.exists({ table: 'vehicules', column: 'id' }),
       rules.unique({ table: 'buses', column: 'id_vehicule' }),
     ]),
-    idHotel: schema.number([
+    id_hotel: schema.number([
       rules.exists({ table: 'hotels', column: 'id' }),
     ]),
     plate: schema.string([
@@ -19,9 +19,9 @@ export default class BusValidator {
   })
 
   public messages: CustomMessages = {
-    "idVehicule.exists": "El vehículo asociado no existe",
-    "idVehicule.unique": "Este vehículo ya está asignado a un bus",
-    "idHotel.exists": "El hotel asociado no existe",
+    "id_vehicule.exists": "El vehículo asociado no existe",
+    "id_vehicule.unique": "Este vehículo ya está asignado a un bus",
+    "id_hotel.exists": "El hotel asociado no existe",
     "plate.regex": "La placa debe tener entre 5 y 10 caracteres alfanuméricos o guiones",
     "plate.unique": "Ya existe un bus con esa placa",
   }

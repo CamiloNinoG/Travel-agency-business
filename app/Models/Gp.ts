@@ -7,7 +7,7 @@ export default class Gp extends BaseModel {
   public id: number;
 
   @column()
-  public idVehicule: number;
+  public id_vehicule: number;
 
   @column()
   public latitud: string;
@@ -15,7 +15,7 @@ export default class Gp extends BaseModel {
   @column()
   public longitude: string;
 
-  @belongsTo(() => Vehicule, { foreignKey: "idVehicule" })
+  @belongsTo(() => Vehicule, { foreignKey: "id_vehicule" })
   public vehicule: BelongsTo<typeof Vehicule>;
 
   @column.dateTime({ autoCreate: true })
