@@ -15,20 +15,30 @@ export default class TravelPlansController {
 
   public async create({ request }: HttpContextContract) {
     const data = await request.validate(TravelPlanValidator)
-    return await TravelPlan.create(data)
+    return await TravelPlan.create({
+      idTravel: data.id_travel,
+      idPlan: data.id_plan,
+    })
   }
 
   public async update({ params, request }: HttpContextContract) {
     const travelPlan = await TravelPlan.findOrFail(params.id)
     const data = await request.validate(TravelPlanValidator)
-    travelPlan.merge(data)
+    travelPlan.merge({
+      idTravel: data.id_travel,
+      idPlan: data.id_plan,
+    })
     await travelPlan.save()
     return travelPlan
   }
 
   public async delete({ params, response }: HttpContextContract) {
-    const travelPlan = await TravelPlan.findOrFail(params.id)
-    await travelPlan.delete()
-    return response.status(204)
+    const travelId = params.id;
+
+    await TravelPlan.query()
+      .where("id_travel", travelId)
+      .delete();
+
+    return response.status(204);
   }
 }

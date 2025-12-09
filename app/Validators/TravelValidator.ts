@@ -5,8 +5,8 @@ export default class TravelValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    destination: schema.string([rules.minLength(3), rules.maxLength(255)]),
-    origin: schema.string([rules.minLength(3), rules.maxLength(255)]),
+    destination: schema.string.optional([rules.minLength(3), rules.maxLength(255)]),
+    origin: schema.string.optional([rules.minLength(3), rules.maxLength(255)]),
     total_price: schema.number.optional([rules.range(1, 10000000)]),
   })
 

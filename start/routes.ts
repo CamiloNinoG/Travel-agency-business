@@ -8,6 +8,7 @@ import './routes/ClientTravel'
 Route.group(() => {
   Route.get('/', 'ActivitiesController.find')          // GET all (paginado)
   Route.get('/:id', 'ActivitiesController.find')        // GET by ID
+  Route.get('/cities/:cityId', 'ActivitiesController.getByCity') // GET activities by City ID
   Route.post('/', 'ActivitiesController.create')        // CREATE
   Route.put('/:id', 'ActivitiesController.update')      // UPDATE
   Route.delete('/:id', 'ActivitiesController.delete')   // DELETE
@@ -53,6 +54,7 @@ Route.group(() => {
 Route.group(() => {
   Route.get('/', 'BusesController.find')
   Route.get('/:id', 'BusesController.find')
+  Route.get('/hotels/:hotelId', 'BusesController.findByHotel')
   Route.post('/', 'BusesController.create')
   Route.put('/:id', 'BusesController.update')
   Route.delete('/:id', 'BusesController.delete')
