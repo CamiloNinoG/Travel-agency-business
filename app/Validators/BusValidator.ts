@@ -1,5 +1,5 @@
-import { schema, CustomMessages, rules } from "@ioc:Adonis/Core/Validator"
-import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext"
+import { schema, rules, CustomMessages } from "@ioc:Adonis/Core/Validator";
+import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 
 export default class BusValidator {
   constructor(protected ctx: HttpContextContract) {}
@@ -24,5 +24,5 @@ export default class BusValidator {
     "id_hotel.exists": "El hotel asociado no existe",
     "plate.regex": "La placa debe tener entre 5 y 10 caracteres alfanuméricos o guiones",
     "plate.unique": "Ya existe un bus con esa placa",
-  }
+  };
 }

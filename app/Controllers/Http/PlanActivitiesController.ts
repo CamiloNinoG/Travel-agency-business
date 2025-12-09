@@ -5,11 +5,14 @@ import PlanActivityValidator from 'App/Validators/PlanActivityValidator'
 export default class PlanActivitiesController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
-      return await PlanActivity.findOrFail(params.id)
+      return await PlanActivity.query()
+        .where("id_plan", params.id)
+        .preload("activity"); // Para traer la info real de la actividad
     } else {
       const page = request.input('page', 1)
       const perPage = request.input('per_page', 20)
-      return await PlanActivity.query().paginate(page, perPage)
+      const pagination = await PlanActivity.query().paginate(page, perPage)
+      return pagination.toJSON()
     }
   }
 
@@ -27,8 +30,12 @@ export default class PlanActivitiesController {
   }
 
   public async delete({ params, response }: HttpContextContract) {
-    const planActivity = await PlanActivity.findOrFail(params.id)
-    await planActivity.delete()
-    return response.status(204)
+    const idPlan = params.id;
+
+    await PlanActivity.query()
+      .where("id_plan", idPlan)
+      .delete();
+
+    return response.status(204);
   }
 }

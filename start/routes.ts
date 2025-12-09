@@ -8,6 +8,7 @@ import './routes/ClientTravel'
 Route.group(() => {
   Route.get('/', 'ActivitiesController.find')          // GET all (paginado)
   Route.get('/:id', 'ActivitiesController.find')        // GET by ID
+  Route.get('/cities/:cityId', 'ActivitiesController.getByCity') // GET activities by City ID
   Route.post('/', 'ActivitiesController.create')        // CREATE
   Route.put('/:id', 'ActivitiesController.update')      // UPDATE
   Route.delete('/:id', 'ActivitiesController.delete')   // DELETE
@@ -33,6 +34,7 @@ Route.group(() => {
 Route.group(() => {
   Route.get('/', 'AirplanesController.find')            // GET all (paginado)
   Route.get('/:id', 'AirplanesController.find')         // GET by ID
+  Route.get('/airlines/:airlineId', 'AirplanesController.getByAirline')   // GET by Airline ID
   Route.post('/', 'AirplanesController.create')         // CREATE
   Route.put('/:id', 'AirplanesController.update')       // UPDATE
   Route.delete('/:id', 'AirplanesController.delete')    // DELETE
@@ -55,6 +57,7 @@ Route.group(() => {
 Route.group(() => {
   Route.get('/', 'BusesController.find')
   Route.get('/:id', 'BusesController.find')
+  Route.get('/hotels/:hotelId', 'BusesController.findByHotel')
   Route.post('/', 'BusesController.create')
   Route.put('/:id', 'BusesController.update')
   Route.delete('/:id', 'BusesController.delete')
@@ -107,6 +110,7 @@ Route.group(() => {
 Route.group(() => {
   Route.get('/', 'HotelsController.find')
   Route.get('/:id', 'HotelsController.find')
+  Route.get('/cities/:cityId', 'HotelsController.findByCity')
   Route.post('/', 'HotelsController.create')
   Route.put('/:id', 'HotelsController.update')
   Route.delete('/:id', 'HotelsController.delete')
@@ -157,6 +161,7 @@ Route.group(() => {
 Route.group(() => {
   Route.get('/', 'RoomsController.find')
   Route.get('/:id', 'RoomsController.find')
+Route.get('/hotels/:hotelId', 'RoomsController.findByHotel')
   Route.post('/', 'RoomsController.create')
   Route.put('/:id', 'RoomsController.update')
   Route.delete('/:id', 'RoomsController.delete')

@@ -10,7 +10,8 @@ export default class TouristPlansController {
     } else {
       const page = request.input('page', 1)
       const perPage = request.input('per_page', 20)
-      return await TouristPlan.query().paginate(page, perPage)
+      const pagination = await TouristPlan.query().paginate(page, perPage)
+      return pagination.toJSON().data
     }
   }
 

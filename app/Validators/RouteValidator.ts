@@ -6,10 +6,10 @@ export default class RouteValidator {
 
   public schema = schema.create({
     id_origin: schema.number([
-      rules.exists({ table: 'cities', column: 'id' }), // o 'locations' según tu tabla real
+      rules.exists({ table: 'cities', column: 'id' }),
     ]),
     id_destination: schema.number([
-      rules.exists({ table: 'cities', column: 'id' }), // o 'locations'
+      rules.exists({ table: 'cities', column: 'id' }),
     ]),
     duration: schema.number.optional([
       rules.range(1, 1000), // duración en minutos o kilómetros según tu caso

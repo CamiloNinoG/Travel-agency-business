@@ -1,5 +1,5 @@
-import { schema, CustomMessages, rules } from "@ioc:Adonis/Core/Validator"
-import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext"
+import { schema, rules, CustomMessages } from "@ioc:Adonis/Core/Validator";
+import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 
 export default class AirplaneValidator {
   constructor(protected ctx: HttpContextContract) {}
@@ -24,5 +24,5 @@ export default class AirplaneValidator {
     "id_airline.exists": "La aerolínea asociada no existe",
     "code.regex": "El código debe tener entre 2 y 10 caracteres alfanuméricos en mayúscula",
     "code.unique": "Ya existe un avión con ese código",
-  }
+  };
 }
