@@ -12,17 +12,19 @@ export default class BankCardUpdate {
     card_name: schema.string.optional([rules.minLength(3), rules.maxLength(100)]),
     bank: schema.string.optional([rules.minLength(3), rules.maxLength(100)]),
     card_number: schema.number.optional([
-      rules.range(100000, 999999), 
-      rules.unique({ table: 'bank_cards', column: 'card_number' }),
+      rules.range(100000, 999999),
+      rules.unique({
+        table: 'bank_cards',
+        column: 'card_number',
+        whereNot: { id: this.ctx.params.id }, // 🟢 IGNORAR EL MISMO ID
+      }),
     ]),
     ccv: schema.string.optional([rules.regex(/^\d{3,4}$/)]),
     expiration: schema.date.optional({ format: 'yyyy-MM-dd' }, [
       rules.after('today'),
     ]),
     default: schema.boolean.optional(),
-    // New validation rule for the balance
-    balance: schema.number.optional([rules.unsigned()]), 
-    // New validation rule for the balance
+    balance: schema.number.optional([rules.unsigned()]),
   })
 
   public messages: CustomMessages = {
