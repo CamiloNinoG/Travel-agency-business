@@ -22,7 +22,7 @@ export default class ServiceTransport extends BaseModel {
   @column()
   public price: number;
 
-  @belongsTo(() => Vehicule, { foreignKey: "idVehicule" })
+  @belongsTo(() => Vehicule, { foreignKey: "id_vehicule" })
   public vehicule: BelongsTo<typeof Vehicule>;
 
   @belongsTo(() => Route, { foreignKey: "id_route" })

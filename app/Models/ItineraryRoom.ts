@@ -12,10 +12,10 @@ export default class ItineraryRoom extends BaseModel {
   @column({ isPrimary: true })
   public idRoom: number
 
-  @belongsTo(() => Itinerary, { foreignKey: 'idItinerary' })
+  @belongsTo(() => Itinerary, { foreignKey: 'id_itinerary' })
   public itinerary: BelongsTo<typeof Itinerary>
 
-  @belongsTo(() => Room, { foreignKey: 'idRoom' })
+  @belongsTo(() => Room, { foreignKey: 'id_room' })
   public room: BelongsTo<typeof Room>
 
   @column.dateTime({ autoCreate: true })
