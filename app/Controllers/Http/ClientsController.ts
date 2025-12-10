@@ -52,6 +52,18 @@ export default class ClientsController {
     }
   }
 
+  public async getByUserId({ params, response }: HttpContextContract) {
+    const { userId } = params;
+
+    const client = await Client.query().where("id_user", userId).first();
+
+    if (!client) {
+      return response.status(404).json({ message: "Cliente no encontrado" });
+    }
+
+    return client;
+  }
+
   public async create({ request }: HttpContextContract) {
     const body = await request.validate(ClientValidator);
     return await Client.create(body);

@@ -10,7 +10,6 @@ export default class ServiceTransportsController {
     if (params.id) {
       const service = await ServiceTransport.findOrFail(params.id)
       console.log("service", service)
-      await service.load('vehicule')
       return service
     } else {
       const page = request.input('page', 1)
@@ -44,7 +43,7 @@ export default class ServiceTransportsController {
       data.price = distanceData.distanceKm
     }
 
-    if (!data.end_date){
+    if (!data.end_date && data.start_date){
       data.end_date = data.start_date.plus({ days: 1 })
     }
     return await ServiceTransport.create(data)

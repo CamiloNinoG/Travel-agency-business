@@ -74,14 +74,14 @@ Route.group(() => {
 
 // === CLIENT ===
 Route.group(() => {
-  Route.get('/clients', 'ClientsController.find')
-  Route.get('/clients/:id', 'ClientsController.find')
-  Route.put('/clients/:id', 'ClientsController.update')
-  Route.post('/clients', 'ClientsController.create')
-  Route.delete('/clients/:id', 'ClientsController.delete')
-  Route.get('/clients/user/:id_user', 'ClientsController.getByUser')
-  Route.get("/clients/by-user/:id", "ClientsController.getByUser");
-})
+  Route.get('/', 'ClientsController.find')
+  Route.get('/:id', 'ClientsController.find')
+  Route.get('/userMongo/:id', 'ClientsController.getByUserId')
+  Route.put('/:id', 'ClientsController.update')
+  Route.post('/', 'ClientsController.create')
+  Route.delete('/:id', 'ClientsController.delete')
+  Route.get('/user/:id_user', 'ClientsController.getByUser')
+}).prefix('/clients')
 
 // Ruta
 
@@ -233,7 +233,7 @@ Route.group(() => {
 
 Route.group(() => {
   Route.get('/', 'ClientTravelsController.find')
-//   Route.get('/:id', 'ClientTravelsController.find')
+  // Route.get('/:id', 'ClientTravelsController.find')
   Route.post('/', 'ClientTravelsController.create')
 //   Route.put('/:id', 'ClientTravelsController.update')
   Route.delete('/:id', 'ClientTravelsController.delete')
@@ -249,6 +249,7 @@ Route.group(() => {
 Route.group(() => {
   Route.get('/', 'AdministratorsController.find')
   Route.get('/:id', 'AdministratorsController.find')
+  Route.get('/user/:userId', 'AdministratorsController.getByUserId')
   Route.post('/', 'AdministratorsController.create')
   Route.put('/:id', 'AdministratorsController.update')
   Route.delete('/:id', 'AdministratorsController.delete')
@@ -262,6 +263,7 @@ Route.group(() => {
 Route.group(() => {
   Route.get('/', 'GuidesController.find')
   Route.get('/:id', 'GuidesController.find')
+  Route.get('/user/:userId', 'GuidesController.getByUserId')
   Route.post('/', 'GuidesController.create')
   Route.put('/:id', 'GuidesController.update')
   Route.delete('/:id', 'GuidesController.delete')

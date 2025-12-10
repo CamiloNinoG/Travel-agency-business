@@ -7,7 +7,6 @@ export default class CitiesController {
   public async find({ request, params }: HttpContextContract) {
     if (params.id) {
       const city = await City.findOrFail(params.id)
-      await city.load('hotels')
       return city
     } else {
       const data = request.all()
@@ -20,6 +19,12 @@ export default class CitiesController {
       }
     }
   }
+
+  public async getCityById({ params }: HttpContextContract) {
+    const city = await City.findOrFail(params.id);
+    return city;
+  }
+
 
   public async create({ request }: HttpContextContract) {
     const body = await request.validate(CityValidator)
