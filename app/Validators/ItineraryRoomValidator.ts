@@ -10,18 +10,18 @@ export default class ItineraryRoomValidator {
     const isCreating = this.ctx.request.method() === "POST";
 
     return schema.create({
-      idItinerary: isCreating
+      id_itinerary: isCreating
         ? schema.number([rules.exists({ table: 'transportation_itineraries', column: 'id' })])
         : schema.number.optional([rules.exists({ table: 'transportation_itineraries', column: 'id' })]),
 
-      idRoom: isCreating
+      id_room: isCreating
         ? schema.number([rules.exists({ table: 'rooms', column: 'id' })])
         : schema.number.optional([rules.exists({ table: 'rooms', column: 'id' })]),
     });
   }
 
   public messages: CustomMessages = {
-    "idItinerary.exists": "El itinerario indicado no existe",
-    "idRoom.exists": "La habitación indicada no existe",
+    "id_itinerary.exists": "El itinerario indicado no existe",
+    "id_room.exists": "La habitación indicada no existe",
   };
 }

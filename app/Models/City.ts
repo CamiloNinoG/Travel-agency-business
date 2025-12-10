@@ -13,10 +13,10 @@ export default class City extends BaseModel {
   @column()
   public ubication: string;
 
-  @hasMany(() => TouristPlan, { foreignKey: "idCity" })
+  @hasMany(() => TouristPlan, { foreignKey: "id_city" })
   public touristPlans: HasMany<typeof TouristPlan>;
 
-  @hasMany(() => Hotel, { foreignKey: "idCity" })
+  @hasMany(() => Hotel, { foreignKey: "id_city" })
   public hotels: HasMany<typeof Hotel>;
 
   @column.dateTime({ autoCreate: true })
