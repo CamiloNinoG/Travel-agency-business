@@ -54,4 +54,17 @@ export default class AdministratorsController {
     await admin.delete();
     return response.status(204);
   }
+
+  public async getByUserId({ params, response }: HttpContextContract) {
+    const { userId } = params;
+
+    const admin = await Administrator.query().where("id_user", userId).first();
+
+    if (!admin) {
+      return response.status(404).json({ message: "Administrador no encontrado" });
+    }
+
+    return admin;
+  }
+
 }

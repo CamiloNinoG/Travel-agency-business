@@ -42,10 +42,16 @@ export default class ClientTravelsController {
 
   // DELETE /client-travels/:id
   public async delete({ params, response }: HttpContextContract) {
-    const clientTravel = await ClientTravel.findOrFail(params.id)
-    await clientTravel.delete()
-    return response.status(204)
+    const travelId = params.id;
+
+    await ClientTravel
+      .query()
+      .where("id_travel", travelId)
+      .delete();
+
+    return response.status(204);
   }
+
 
   // GET /client-travels/client/:id/travels
   public async getTravelsByClient({ params }: HttpContextContract) {

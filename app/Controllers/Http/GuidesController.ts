@@ -19,6 +19,18 @@ export default class GuidesController {
     return await Guide.query()
   }
 
+    public async getByUserId({ params, response }: HttpContextContract) {
+      const { userId } = params;
+  
+      const guide = await Guide.query().where("id_user", userId).first();
+  
+      if (!guide) {
+        return response.status(404).json({ message: "Guia no encontrado" });
+      }
+  
+      return guide;
+    }
+
   public async create({ request }: HttpContextContract) {
     const body = await request.validate(GuideValidator)
     const guide = await Guide.create(body)
